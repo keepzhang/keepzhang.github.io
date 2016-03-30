@@ -41,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="不会做饭的程序猿不是好架构狮">不会做饭的程序猿不是好架构狮</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -54,7 +54,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:keepzhang.github.io">
 					</form>
 					
@@ -78,7 +78,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-03-30T01:57:19.000Z" itemprop="datePublished">2016-03-30</time>
-    更新日期:<time datetime="2016-03-30T02:10:52.735Z" itemprop="dateModified">2016-03-30</time>
+    Updated:<time datetime="2016-03-30T02:12:04.749Z" itemprop="dateModified">2016-03-30</time>
     
   </p>
 </header>
@@ -86,12 +86,12 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、SyntaxError-Non-ASCII-character-‘-xe6’-in-file-I-python-spider-py-on-line-11-but-no-encoding-declared-see-http-python-org-dev-peps-pep-0263-for-details"><span class="toc-number">1.</span> <span class="toc-text">1、SyntaxError: Non-ASCII character ‘\xe6’ in file I:\python\spider.py on line 11, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128"><span class="toc-number">2.</span> <span class="toc-text">2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)</span></a></li></ol>
 		</div>
 		
 		<h3 id="1、SyntaxError-Non-ASCII-character-‘-xe6’-in-file-I-python-spider-py-on-line-11-but-no-encoding-declared-see-http-python-org-dev-peps-pep-0263-for-details"><a href="#1、SyntaxError-Non-ASCII-character-‘-xe6’-in-file-I-python-spider-py-on-line-11-but-no-encoding-declared-see-http-python-org-dev-peps-pep-0263-for-details" class="headerlink" title="1、SyntaxError: Non-ASCII character ‘\xe6’ in file I:\python\spider.py on line 11, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details"></a>1、SyntaxError: Non-ASCII character ‘\xe6’ in file I:\python\spider.py on line 11, but no encoding declared; see <a href="http://python.org/dev/peps/pep-0263/" target="_blank" rel="external">http://python.org/dev/peps/pep-0263/</a> for details</h3><p>原因：发现是因为Python在默认状态下不支持源文件中的编码所致<br>解决办法：在文件头部添加 #-<em>- coding: UTF-8 -</em>-  </p>
-<h3 id="2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128"><a href="#2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128" class="headerlink" title="2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)"></a>2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)</h3><p>原因：默认的编码模式为ascii，由此Python自然调用ascii编码解码程序去处理字符流，当字符流不属于ascii范围内，就会抛出异常（ordinal not in range(128)<br>解决办法：修改默认的编码模式<br>import sys<br>reload(sys)<br>sys.setdefaultencoding(‘utf-8’)</p>
+<h3 id="2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128"><a href="#2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128" class="headerlink" title="2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)"></a>2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)</h3><p>原因：默认的编码模式为ascii，由此Python自然调用ascii编码解码程序去处理字符流，当字符流不属于ascii范围内，就会抛出异常ordinal not in range(128)<br>解决办法：修改默认的编码模式<br>import sys<br>reload(sys)<br>sys.setdefaultencoding(‘utf-8’)</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -123,15 +123,15 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、SyntaxError-Non-ASCII-character-‘-xe6’-in-file-I-python-spider-py-on-line-11-but-no-encoding-declared-see-http-python-org-dev-peps-pep-0263-for-details"><span class="toc-number">1.</span> <span class="toc-text">1、SyntaxError: Non-ASCII character ‘\xe6’ in file I:\python\spider.py on line 11, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、UnicodeEncodeError-‘ascii’-codec-can’t-encode-characters-in-position-0-6-ordinal-not-in-range-128"><span class="toc-number">2.</span> <span class="toc-text">2、UnicodeEncodeError: ‘ascii’ codec can’t encode characters in position 0-6:ordinal not in range(128)</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -139,7 +139,7 @@
   
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="null" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
