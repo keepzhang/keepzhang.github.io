@@ -105,7 +105,7 @@ VIP
     </p>
   <p class="article-time">
     <time datetime="2016-04-13T00:44:37.000Z" itemprop="datePublished">2016-04-13</time>
-    Updated:<time datetime="2016-04-13T06:01:44.739Z" itemprop="dateModified">2016-04-13</time>
+    Updated:<time datetime="2016-04-13T06:04:55.273Z" itemprop="dateModified">2016-04-13</time>
     
   </p>
 </header>
@@ -173,31 +173,10 @@ VIP
 <p>mysql&gt; change master to master_host=’192.168.2.173’,master_user=’sync’,master_password=’ShenZhen_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000003’,master_log_pos=1068;   #对接点的信息<br>Query OK, 0 rows affected (0.05 sec)<br>在node2<br>如果已经start slave,需要执行stop slave;,并且unlock tables;<br>mysql&gt; change master to master_host=’192.168.2.172’,master_user=’sync’,master_password=’ShenZhou_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000006,master_log_pos=1050;<br>Query OK, 0 rows affected (0.15 sec)<br>注：master_log_file，master_log_pos由上面主服务器查出的状态值中确定<br>master_log_file对应File，master_log_pos对应Position<br>在node1、node2上<br>mysql&gt; unlock tables;<br>Query OK, 0 rows affected (0.00 sec)</p>
 <h4 id="2-6-分别在服务器node1、node2上启动从服务器线程"><a href="#2-6-分别在服务器node1、node2上启动从服务器线程" class="headerlink" title="2.6 分别在服务器node1、node2上启动从服务器线程"></a>2.6 分别在服务器node1、node2上启动从服务器线程</h4><p>mysql&gt; start slave;<br>Query OK, 0 rows affected (0.00 sec)<br>分别在服务器node1、node2上查看从服务器状态 :<br>node1上<br>mysql&gt; show slave status\G<br><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>主要关注以下 2 个参数：<br>…<br>…<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>…<br>…</p>
 <p>node2上：<br>mysql&gt; show slave status\G<br><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>主要关注以下 2 个参数：<br>…<br>…<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>…</p>
-<pre><code>在测试中出现Slave_IO_Running: No Slave_SQL_Running: Yes  Seconds_Behind_Master: NULL情况
-排查过程为：查看mysql日志文件 tail -f /var/log/mysqld.log
-发现报错信息[ERROR] Slave I/O for channel &apos;&apos;: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work. Error_code: 1593
-1、错误消息
-mysql&gt; show slave staus;
-
-Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; 
-these UUIDs must be different for replication to work.
-
-2、查看主从的server_id变量
-node1&gt; show variables like &apos;server_id&apos;;
-+---------------+-------+
-| Variable_name | Value |
-+---------------+-------+
-| server_id    | 1|
-+---------------+-------+
-node2&gt; show variables like &apos;server_id&apos;;
-+---------------+-------+
-| Variable_name | Value |    
-+---------------+-------+
-| server_id    |2    |
-+---------------+-------+
--- 从上面的情形可知，主从mysql已经使用了不同的server_id
-3、解决故障
-</code></pre><p>###查看auto.cnf文件<br>[root@node1~]#more /usr/local/mysql/auto.cnf  ### 主上的uuid<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###从上的uuid，果然出现了重复，原因是克隆了虚拟机，只改server_id不行<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]# mv /usr/local/mysql/auto.cnf  /usr/local/mysql/auto.cnf.bk  ###重命名该文件<br>[root@node2~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###重启后自动生成新的auto.cnf文件，即新的UUID<br>[auto]<br>server-uuid=37ea8741-00bd-11e6-bcdb-000c294d8f22<br>[root@node1~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]</p>
+<p>在测试中出现Slave_IO_Running: No Slave_SQL_Running: Yes  Seconds_Behind_Master: NULL情况<br>排查过程为：查看mysql日志文件 tail -f /var/log/mysqld.log<br>发现报错信息[ERROR] Slave I/O for channel ‘’: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work. Error_code: 1593<br>1、错误消息<br>mysql&gt; show slave staus;</p>
+<p>Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs;<br>these UUIDs must be different for replication to work.</p>
+<p>2、查看主从的server_id变量<br>node1&gt; show variables like ‘server_id’;<br>+—————+——-+<br>| Variable_name | Value |<br>+—————+——-+<br>| server_id    | 1|<br>+—————+——-+<br>node2&gt; show variables like ‘server_id’;<br>+—————+——-+<br>| Variable_name | Value |<br>+—————+——-+<br>| server_id    |2    |<br>+—————+——-+<br>– 从上面的情形可知，主从mysql已经使用了不同的server_id<br>3、解决故障</p>
+<p>###查看auto.cnf文件<br>[root@node1~]#more /usr/local/mysql/auto.cnf  ### 主上的uuid<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###从上的uuid，果然出现了重复，原因是克隆了虚拟机，只改server_id不行<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]# mv /usr/local/mysql/auto.cnf  /usr/local/mysql/auto.cnf.bk  ###重命名该文件<br>[root@node2~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###重启后自动生成新的auto.cnf文件，即新的UUID<br>[auto]<br>server-uuid=37ea8741-00bd-11e6-bcdb-000c294d8f22<br>[root@node1~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]</p>
 <p>###再次查看l两节点slave的状态已经正常<br>[root@noss2~]#<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>            Seconds_Behind_Master: 0<br>[root@noss1~]#<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>            Seconds_Behind_Master: 0</p>
 <h4 id="2-7-测试"><a href="#2-7-测试" class="headerlink" title="2.7 测试"></a>2.7 测试</h4><p>node2上<br>mysql&gt; show databases;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>| test               |<br>+——————–+<br>5 rows in set (0.00 sec)<br>mysql&gt; use test;<br>Database changed<br>mysql&gt; show tables;<br>+—————-+<br>| Tables_in_test |<br>+—————-+<br>| test1          |<br>+—————-+<br>1 row in set (0.00 sec)<br>mysql&gt; create table sync (id int);<br>Query OK, 0 rows affected (0.23 sec)<br>mysql&gt;insert into sync values(1);<br>Query OK, 1 row affected (0.09 sec)<br>mysql&gt; commit;<br>Query OK, 0 rows affected (0.01 sec)</p>
 <p>在 node1上<br>mysql&gt; show tables;<br>+—————-+<br>| Tables_in_test |<br>+—————-+<br>| sync           |<br>+—————-+<br>2 rows in set (0.00 sec)<br>mysql&gt; select * from sync;<br>+——+<br>| id  |<br>+——+<br>|    1 |<br>+——+<br>1 row in set (0.00 sec)</p>
