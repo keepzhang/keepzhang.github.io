@@ -68,7 +68,7 @@ VIP
 				<h1 class="site-name"><a href="/" title="不会做饭的程序猿不是好架构狮">不会做饭的程序猿不是好架构狮</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -81,7 +81,7 @@ VIP
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:keepzhang.github.io">
 					</form>
 					
@@ -105,7 +105,7 @@ VIP
     </p>
   <p class="article-time">
     <time datetime="2016-04-13T00:44:37.000Z" itemprop="datePublished">2016-04-13</time>
-    更新日期:<time datetime="2016-04-13T05:57:13.661Z" itemprop="dateModified">2016-04-13</time>
+    Updated:<time datetime="2016-04-13T06:01:44.739Z" itemprop="dateModified">2016-04-13</time>
     
   </p>
 </header>
@@ -113,7 +113,7 @@ VIP
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实验环境介绍"><span class="toc-number">1.</span> <span class="toc-text">实验环境介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、mysql-yum安装"><span class="toc-number">2.</span> <span class="toc-text">1、mysql yum安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Adding-the-MySQL-Yum-Repository"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Adding the MySQL Yum Repository</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Selecting-a-Release-Series"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 Selecting a Release Series</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-Installing-MySQL"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 Installing MySQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql双主复制"><span class="toc-number">3.</span> <span class="toc-text">2 mysql双主复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建同步用户"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 创建同步用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-修改-etc-my-cnf-配置文件-为其添加以下内容"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 修改 /etc/my.cnf 配置文件,为其添加以下内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-分别重启服务器node1、node2上的mysql服务"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 分别重启服务器node1、node2上的mysql服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-分别在服务器node1、node2上查看做为主服务器状态"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 分别在服务器node1、node2上查看做为主服务器状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-分别在服务器node1、node2上用change-master语句指定同步位置"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 分别在服务器node1、node2上用change master语句指定同步位置 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-分别在服务器node1、node2上启动从服务器线程"><span class="toc-number">3.6.</span> <span class="toc-text">2.6 分别在服务器node1、node2上启动从服务器线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-测试"><span class="toc-number">3.7.</span> <span class="toc-text">2.7 测试</span></a></li></ol></li></ol>
 		</div>
 		
@@ -173,7 +173,32 @@ VIP
 <p>mysql&gt; change master to master_host=’192.168.2.173’,master_user=’sync’,master_password=’ShenZhen_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000003’,master_log_pos=1068;   #对接点的信息<br>Query OK, 0 rows affected (0.05 sec)<br>在node2<br>如果已经start slave,需要执行stop slave;,并且unlock tables;<br>mysql&gt; change master to master_host=’192.168.2.172’,master_user=’sync’,master_password=’ShenZhou_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000006,master_log_pos=1050;<br>Query OK, 0 rows affected (0.15 sec)<br>注：master_log_file，master_log_pos由上面主服务器查出的状态值中确定<br>master_log_file对应File，master_log_pos对应Position<br>在node1、node2上<br>mysql&gt; unlock tables;<br>Query OK, 0 rows affected (0.00 sec)</p>
 <h4 id="2-6-分别在服务器node1、node2上启动从服务器线程"><a href="#2-6-分别在服务器node1、node2上启动从服务器线程" class="headerlink" title="2.6 分别在服务器node1、node2上启动从服务器线程"></a>2.6 分别在服务器node1、node2上启动从服务器线程</h4><p>mysql&gt; start slave;<br>Query OK, 0 rows affected (0.00 sec)<br>分别在服务器node1、node2上查看从服务器状态 :<br>node1上<br>mysql&gt; show slave status\G<br><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>主要关注以下 2 个参数：<br>…<br>…<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>…<br>…</p>
 <p>node2上：<br>mysql&gt; show slave status\G<br><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>主要关注以下 2 个参数：<br>…<br>…<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">在测试中出现Slave_IO_Running: No Slave_SQL_Running: Yes  Seconds_Behind_Master: NULL情况</span><br><span class="line">排查过程为：查看mysql日志文件 tail -f /var/log/mysqld.log</span><br><span class="line">发现报错信息[ERROR] Slave I/O for channel &apos;&apos;: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work. Error_code: 1593</span><br><span class="line">1、错误消息</span><br><span class="line">mysql&gt; show slave staus;</span><br><span class="line"> </span><br><span class="line">Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; </span><br><span class="line">these UUIDs must be different for replication to work.</span><br><span class="line"> </span><br><span class="line">2、查看主从的server_id变量</span><br><span class="line">node1&gt; show variables like &apos;server_id&apos;;</span><br><span class="line">+---------------+-------+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span><br><span class="line">| server_id    | 1|</span><br><span class="line">+---------------+-------+</span><br><span class="line">node2&gt; show variables like &apos;server_id&apos;;</span><br><span class="line">+---------------+-------+</span><br><span class="line">| Variable_name | Value |</span><br><span class="line">+---------------+-------+</span><br><span class="line">| server_id    |2    |</span><br><span class="line">+---------------+-------+</span><br><span class="line">-- 从上面的情形可知，主从mysql已经使用了不同的server_id</span><br><span class="line">3、解决故障</span><br><span class="line">###查看auto.cnf文件</span><br><span class="line">[root@node1~]#more /usr/local/mysql/auto.cnf  ### 主上的uuid</span><br><span class="line">[auto]</span><br><span class="line">server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93</span><br><span class="line">[root@node2~]#more /usr/local/mysql/auto.cnf  ###从上的uuid，果然出现了重复，原因是克隆了虚拟机，只改server_id不行</span><br><span class="line">[auto]</span><br><span class="line">server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93</span><br><span class="line">[root@node2~]# mv /usr/local/mysql/auto.cnf  /usr/local/mysql/auto.cnf.bk  ###重命名该文件</span><br><span class="line">[root@node2~]# service mysql restart          ###重启mysql</span><br><span class="line">Shutting down MySQL.[  OK  ]</span><br><span class="line">Starting MySQL.[  OK  ]</span><br><span class="line">[root@node2~]#more /usr/local/mysql/auto.cnf  ###重启后自动生成新的auto.cnf文件，即新的UUID</span><br><span class="line">[auto]</span><br><span class="line">server-uuid=37ea8741-00bd-11e6-bcdb-000c294d8f22</span><br><span class="line">[root@node1~]# service mysql restart          ###重启mysql</span><br><span class="line">Shutting down MySQL.[  OK  ]</span><br><span class="line">Starting MySQL.[  OK  ]</span><br><span class="line">###再次查看l两节点slave的状态已经正常</span><br><span class="line">[root@noss2~]# </span><br><span class="line">            Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">            Seconds_Behind_Master: 0</span><br><span class="line">[root@noss1~]# </span><br><span class="line">            Slave_IO_Running: Yes</span><br><span class="line">            Slave_SQL_Running: Yes</span><br><span class="line">            Seconds_Behind_Master: 0</span><br></pre></td></tr></table></figure>
+<pre><code>在测试中出现Slave_IO_Running: No Slave_SQL_Running: Yes  Seconds_Behind_Master: NULL情况
+排查过程为：查看mysql日志文件 tail -f /var/log/mysqld.log
+发现报错信息[ERROR] Slave I/O for channel &apos;&apos;: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work. Error_code: 1593
+1、错误消息
+mysql&gt; show slave staus;
+
+Last_IO_Error: Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; 
+these UUIDs must be different for replication to work.
+
+2、查看主从的server_id变量
+node1&gt; show variables like &apos;server_id&apos;;
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| server_id    | 1|
++---------------+-------+
+node2&gt; show variables like &apos;server_id&apos;;
++---------------+-------+
+| Variable_name | Value |    
++---------------+-------+
+| server_id    |2    |
++---------------+-------+
+-- 从上面的情形可知，主从mysql已经使用了不同的server_id
+3、解决故障
+</code></pre><p>###查看auto.cnf文件<br>[root@node1~]#more /usr/local/mysql/auto.cnf  ### 主上的uuid<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###从上的uuid，果然出现了重复，原因是克隆了虚拟机，只改server_id不行<br>[auto]<br>server-uuid=615fecec-fe27-11e5-b7ec-000c29d5bb93<br>[root@node2~]# mv /usr/local/mysql/auto.cnf  /usr/local/mysql/auto.cnf.bk  ###重命名该文件<br>[root@node2~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]<br>[root@node2~]#more /usr/local/mysql/auto.cnf  ###重启后自动生成新的auto.cnf文件，即新的UUID<br>[auto]<br>server-uuid=37ea8741-00bd-11e6-bcdb-000c294d8f22<br>[root@node1~]# service mysql restart          ###重启mysql<br>Shutting down MySQL.[  OK  ]<br>Starting MySQL.[  OK  ]</p>
+<p>###再次查看l两节点slave的状态已经正常<br>[root@noss2~]#<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>            Seconds_Behind_Master: 0<br>[root@noss1~]#<br>            Slave_IO_Running: Yes<br>            Slave_SQL_Running: Yes<br>            Seconds_Behind_Master: 0</p>
 <h4 id="2-7-测试"><a href="#2-7-测试" class="headerlink" title="2.7 测试"></a>2.7 测试</h4><p>node2上<br>mysql&gt; show databases;<br>+——————–+<br>| Database           |<br>+——————–+<br>| information_schema |<br>| mysql              |<br>| performance_schema |<br>| sys                |<br>| test               |<br>+——————–+<br>5 rows in set (0.00 sec)<br>mysql&gt; use test;<br>Database changed<br>mysql&gt; show tables;<br>+—————-+<br>| Tables_in_test |<br>+—————-+<br>| test1          |<br>+—————-+<br>1 row in set (0.00 sec)<br>mysql&gt; create table sync (id int);<br>Query OK, 0 rows affected (0.23 sec)<br>mysql&gt;insert into sync values(1);<br>Query OK, 1 row affected (0.09 sec)<br>mysql&gt; commit;<br>Query OK, 0 rows affected (0.01 sec)</p>
 <p>在 node1上<br>mysql&gt; show tables;<br>+—————-+<br>| Tables_in_test |<br>+—————-+<br>| sync           |<br>+—————-+<br>2 rows in set (0.00 sec)<br>mysql&gt; select * from sync;<br>+——+<br>| id  |<br>+——+<br>|    1 |<br>+——+<br>1 row in set (0.00 sec)</p>
   
@@ -207,15 +232,15 @@ VIP
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实验环境介绍"><span class="toc-number">1.</span> <span class="toc-text">实验环境介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、mysql-yum安装"><span class="toc-number">2.</span> <span class="toc-text">1、mysql yum安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Adding-the-MySQL-Yum-Repository"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 Adding the MySQL Yum Repository</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Selecting-a-Release-Series"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 Selecting a Release Series</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-Installing-MySQL"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 Installing MySQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql双主复制"><span class="toc-number">3.</span> <span class="toc-text">2 mysql双主复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建同步用户"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 创建同步用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-修改-etc-my-cnf-配置文件-为其添加以下内容"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 修改 /etc/my.cnf 配置文件,为其添加以下内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-分别重启服务器node1、node2上的mysql服务"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 分别重启服务器node1、node2上的mysql服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-分别在服务器node1、node2上查看做为主服务器状态"><span class="toc-number">3.4.</span> <span class="toc-text">2.4 分别在服务器node1、node2上查看做为主服务器状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-分别在服务器node1、node2上用change-master语句指定同步位置"><span class="toc-number">3.5.</span> <span class="toc-text">2.5 分别在服务器node1、node2上用change master语句指定同步位置 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-分别在服务器node1、node2上启动从服务器线程"><span class="toc-number">3.6.</span> <span class="toc-text">2.6 分别在服务器node1、node2上启动从服务器线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-测试"><span class="toc-number">3.7.</span> <span class="toc-text">2.7 测试</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -223,7 +248,7 @@ VIP
   
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+	<a href="null" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
