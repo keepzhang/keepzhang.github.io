@@ -1,0 +1,637 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>python入门基础 | 不会做饭的程序猿不是好架构狮</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Keep zhang">
+    
+    <meta name="description" content="1.数据类型1.1 整数
+Python可以处理任意大小的整数，当然包括负整数，在Python程序中，整数的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等。计算机由于使用二进制，所以，有时候用十六进制表示整数比较方便，十六进制用0x前缀和0-9，a-f表示，例如：0xff00，">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+	
+<script type="text/javascript">
+#���İٶ�ͳ�ƴ���
+</script>
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="不会做饭的程序猿不是好架构狮" title="不会做饭的程序猿不是好架构狮"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="不会做饭的程序猿不是好架构狮">不会做饭的程序猿不是好架构狮</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:keepzhang.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/03/31/python入门基础/" title="python入门基础" itemprop="url">python入门基础</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://keepzhang.github.io" title="Keep zhang">Keep zhang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-03-31T03:22:31.000Z" itemprop="datePublished">2016-03-31</time>
+    Updated:<time datetime="2016-04-05T09:18:20.575Z" itemprop="dateModified">2016-04-05</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据类型"><span class="toc-number">1.</span> <span class="toc-text">1.数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-整数"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-浮点数"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 浮点数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-字符串"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-布尔值"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 布尔值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-空值"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 空值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-变量"><span class="toc-number">2.</span> <span class="toc-text">2.变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串"><span class="toc-number">3.</span> <span class="toc-text">3.字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-raw字符串与多行字符串"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 raw字符串与多行字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Unicode字符串"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Unicode字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-整数和浮点数"><span class="toc-number">4.</span> <span class="toc-text">4.整数和浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-布尔类型"><span class="toc-number">5.</span> <span class="toc-text">5.布尔类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-创建list"><span class="toc-number">6.</span> <span class="toc-text">6.创建list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-list"><span class="toc-number">7.</span> <span class="toc-text">7.list</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-按照索引访问list"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 按照索引访问list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-倒序访问list"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 倒序访问list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-添加新元素"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 添加新元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-从list删除元素"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 从list删除元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-替换元素"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 替换元素</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-tuple"><span class="toc-number">8.</span> <span class="toc-text">8. tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-创建tuple"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 创建tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-创建单元素tuple"><span class="toc-number">8.2.</span> <span class="toc-text">8.2 创建单元素tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-“可变”的tuple"><span class="toc-number">8.3.</span> <span class="toc-text">8.3 “可变”的tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-if语句"><span class="toc-number">8.4.</span> <span class="toc-text">9 if语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-if-else语句"><span class="toc-number">9.</span> <span class="toc-text">10. if-else语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-if-elif-else"><span class="toc-number">10.</span> <span class="toc-text">11. if-elif-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-for循环"><span class="toc-number">11.</span> <span class="toc-text">12. for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-while循环"><span class="toc-number">12.</span> <span class="toc-text">13. while循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-break退出循环"><span class="toc-number">13.</span> <span class="toc-text">14. break退出循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-continue继续循环"><span class="toc-number">14.</span> <span class="toc-text">15. continue继续循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-多重循环"><span class="toc-number">15.</span> <span class="toc-text">16. 多重循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-什么是dict"><span class="toc-number">16.</span> <span class="toc-text">17 什么是dict</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#17-1-访问dict"><span class="toc-number">16.1.</span> <span class="toc-text">17.1 访问dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-2-dict的特点"><span class="toc-number">16.2.</span> <span class="toc-text">17.2 dict的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-3-更新dict"><span class="toc-number">16.3.</span> <span class="toc-text">17.3 更新dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-4-遍历dict"><span class="toc-number">16.4.</span> <span class="toc-text">17.4 遍历dict</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-什么是set"><span class="toc-number">17.</span> <span class="toc-text">18 什么是set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#18-1-访问set"><span class="toc-number">17.1.</span> <span class="toc-text">18.1 访问set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-2-set的特点"><span class="toc-number">17.2.</span> <span class="toc-text">18.2 set的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-3-遍历set"><span class="toc-number">17.3.</span> <span class="toc-text">18.3 遍历set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-4-更新set"><span class="toc-number">17.4.</span> <span class="toc-text">18.4 更新set</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-函数"><span class="toc-number">18.</span> <span class="toc-text">19. 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#19-1-什么是函数"><span class="toc-number">18.1.</span> <span class="toc-text">19.1 什么是函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-2-调用函数"><span class="toc-number">18.2.</span> <span class="toc-text">19.2 调用函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-3-编写函数"><span class="toc-number">18.3.</span> <span class="toc-text">19.3 编写函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-4-返回多值"><span class="toc-number">18.4.</span> <span class="toc-text">19.4 返回多值</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#math包提供了sin-和-cos-函数，我们先用import引用它："><span class="toc-number"></span> <span class="toc-text">math包提供了sin()和 cos()函数，我们先用import引用它：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#19-5-递归函数"><span class="toc-number">0.1.</span> <span class="toc-text">19.5 递归函数\</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-6-定义默认参数"><span class="toc-number">0.2.</span> <span class="toc-text">19.6 定义默认参数</span></a></li></ol></li></ol>
+		</div>
+		
+		<h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><h4 id="1-1-整数"><a href="#1-1-整数" class="headerlink" title="1.1 整数"></a>1.1 整数</h4><blockquote>
+<p>Python可以处理任意大小的整数，当然包括负整数，在Python程序中，整数的表示方法和数学上的写法一模一样，例如：1，100，-8080，0，等等。<br>计算机由于使用二进制，所以，有时候用十六进制表示整数比较方便，十六进制用0x前缀和0-9，a-f表示，例如：0xff00，0xa5b4c3d2，等等。</p>
+<h4 id="1-2-浮点数"><a href="#1-2-浮点数" class="headerlink" title="1.2 浮点数"></a>1.2 浮点数</h4><p>浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，比如，1.23x10^9和12.3x10^8是相等的。浮点数可以用数学写法，如1.23，3.14，-9.01，等等。但是对于很大或很小的浮点数，就必须用科学计数法表示，把10用e替代，1.23x10^9就是1.23e9，或者12.3e8，0.000012可以写成1.2e-5，等等。<br>整数和浮点数在计算机内部存储的方式是不同的，整数运算永远是精确的（除法难道也是精确的？是的！），而浮点数运算则可能会有四舍五入的误差。</p>
+<h4 id="1-3-字符串"><a href="#1-3-字符串" class="headerlink" title="1.3 字符串"></a>1.3 字符串</h4><p>字符串是以’’或””括起来的任意文本，比如’abc’，”xyz”等等。请注意，’’或””本身只是一种表示方式，不是字符串的一部分，因此，字符串’abc’只有a，b，c这3个字符。</p>
+<h4 id="1-4-布尔值"><a href="#1-4-布尔值" class="headerlink" title="1.4 布尔值"></a>1.4 布尔值</h4><p>布尔值和布尔代数的表示完全一致，一个布尔值只有True、False两种值，要么是True，要么是False，在Python中，可以直接用True、False表示布尔值（请注意大小写），也可以通过布尔运算计算出来。<br>布尔值可以用and、or和not运算。<br>and运算是与运算，只有所有都为 True，and运算结果才是 True。<br>or运算是或运算，只要其中有一个为 True，or 运算结果就是 True。<br>not运算是非运算，它是一个单目运算符，把 True 变成 False，False 变成 True。</p>
+<h4 id="1-5-空值"><a href="#1-5-空值" class="headerlink" title="1.5 空值"></a>1.5 空值</h4><p>空值是Python里一个特殊的值，用None表示。None不能理解为0，因为0是有意义的，而None是一个特殊的空值。<br>此外，Python还提供了列表、字典等多种数据类型，还允许创建自定义数据类型</p>
+</blockquote>
+<h3 id="2-变量"><a href="#2-变量" class="headerlink" title="2.变量"></a>2.变量</h3><blockquote>
+<p>变量不仅可以是数字，还可以是任意数据类型。在Python程序中，变量是用一个变量名表示，变量名必须是大小写英文、数字和下划线（_）的组合，且不能用数字开头.<br>在Python中，等号=是赋值语句，可以把任意数据类型赋值给变量，同一个变量可以反复赋值，而且可以是不同类型的变量,这种变量本身类型不固定的语言称之为动态语言，与之对应的是静态语言。<br>静态语言在定义变量时必须指定变量类型，如果赋值的时候类型不匹配，就会报错。例如Java是静态语言.</p>
+</blockquote>
+<h3 id="3-字符串"><a href="#3-字符串" class="headerlink" title="3.字符串"></a>3.字符串</h3><blockquote>
+<p>字符串可以用’’或者””括起来表示。<br>Python字符串用\进行转义<br>转义字符 \ 不计入字符串的内容<br>常用的转义字符还有：<br>    \n 表示换行<br>    \t 表示一个制表符<br>    \ 表示 \ 字符本身</p>
+<h4 id="3-1-raw字符串与多行字符串"><a href="#3-1-raw字符串与多行字符串" class="headerlink" title="3.1 raw字符串与多行字符串"></a>3.1 raw字符串与多行字符串</h4><p>如果一个字符串包含很多需要转义的字符，对每一个字符都进行转义会很麻烦。为了避免这种情况，我们可以在字符串前面加个前缀 r ，表示这是一个 raw 字符串，里面的字符就不需要转义了<br>如果要表示多行字符串，可以用’’’…’’’表示<br>还可以在多行字符串前面添加 r ，把这个多行字符串也变成一个raw字符串</p>
+<h4 id="3-2-Unicode字符串"><a href="#3-2-Unicode字符串" class="headerlink" title="3.2 Unicode字符串"></a>3.2 Unicode字符串</h4><p>字符串还有一个编码问题。</p>
+</blockquote>
+<hr>
+<p>因为计算机只能处理数字，如果要处理文本，就必须先把文本转换为数字才能处理。最早的计算机在设计时采用8个比特（bit）作为一个字节（byte），所以，一个字节能表示的最大的整数就是255（二进制11111111=十进制255），0 - 255被用来表示大小写英文字母、数字和一些符号，这个编码表被称为ASCII编码，比如大写字母 A 的编码是65，小写字母 z 的编码是122。<br>如果要表示中文，显然一个字节是不够的，至少需要两个字节，而且还不能和ASCII编码冲突，所以，中国制定了GB2312编码，用来把中文编进去。<br>类似的，日文和韩文等其他语言也有这个问题。为了统一所有文字的编码，Unicode应运而生。Unicode把所有语言都统一到一套编码里，这样就不会再有乱码问题了。<br>Unicode通常用两个字节表示一个字符，原有的英文编码从单字节变成双字节，只需要把高字节全部填为0就可以。<br>因为Python的诞生比Unicode标准发布的时间还要早，所以最早的Python只支持ASCII编码，普通的字符串’ABC’在Python内部都是ASCII编码的。<br>Python在后来添加了对Unicode的支持，以Unicode表示的字符串用u’…’表示，比如：<br>print u’中文’<br>中文<br>注意: 不加 u ，中文就不能正常显示。<br>Unicode字符串除了多了一个 u 之外，与普通字符串没啥区别，转义字符和多行表示法仍然有效：<br>转义：<br>u’中文\n日文\n韩文’<br>多行：<br>u’’’第一行<br>第二行’’’<br>raw+多行：<br>ur’’’Python的Unicode字符串支持”中文”,<br>“日文”,<br>“韩文”等多种语言’’’<br>如果中文字符串在Python环境下遇到 UnicodeDecodeError，这是因为.py文件保存的格式有问题。可以在第一行添加注释</p>
+<pre><code># -*- coding: utf-8 -*-
+</code></pre><p>目的是告诉Python解释器，用UTF-8编码读取源代码。然后用Notepad++ 另存为… 并选择UTF-8格式保存。</p>
+<hr>
+<h3 id="4-整数和浮点数"><a href="#4-整数和浮点数" class="headerlink" title="4.整数和浮点数"></a>4.整数和浮点数</h3><blockquote>
+<p>Python支持对整数和浮点数直接进行四则混合运算，运算规则和数学上的四则运算规则完全一致<br>使用括号可以提升优先级，这和数学运算完全一致，注意只能使用小括号，但是括号可以嵌套很多层<br>和数学运算不同的地方是，Python的整数运算结果仍然是整数，浮点数运算结果仍然是浮点数<br>整数和浮点数混合运算的结果就变成浮点数</p>
+<h3 id="5-布尔类型"><a href="#5-布尔类型" class="headerlink" title="5.布尔类型"></a>5.布尔类型</h3><p>布尔类型只有True和False两种值，但是布尔类型有以下几种运算：<br>与运算：只有两个布尔值都为 True 时，计算结果才为 True<br>只要有一个布尔值为 True，计算结果就是 True。<br>把True变为False，或者把False变为True<br>布尔运算在计算机中用来做条件判断，根据计算结果为True或者False，计算机可以自动执行不同的后续代码</p>
+</blockquote>
+<hr>
+<p>在Python中，布尔类型还可以与其他数据类型做 and、or和not运算，请看下面的代码：<br>a = True<br>print a and ‘a=T’ or ‘a=F’<br>计算结果不是布尔类型，而是字符串 ‘a=T’，这是为什么呢？<br>因为Python把0、空字符串’’和None看成 False，其他数值和非空字符串都看成 True，所以：<br>True and ‘a=T’ 计算结果是 ‘a=T’<br>继续计算 ‘a=T’ or ‘a=F’ 计算结果还是 ‘a=T’<br>要解释上述结果，又涉及到 and 和 or 运算的一条重要法则：短路计算。</p>
+<ol>
+<li>在计算 a and b 时，如果 a 是 False，则根据与运算法则，整个结果必定为 False，因此返回 a；如果 a 是 True，则整个计算结果必定取决与 b，因此返回 b。</li>
+<li>在计算 a or b 时，如果 a 是 True，则根据或运算法则，整个计算结果必定为 True，因此返回 a；如果 a 是 False，则整个计算结果必定取决于 b，因此返回 b。<br>所以Python解释器在做布尔运算时，只要能提前确定计算结果，它就不会往后算了，直接返回结果。</li>
+</ol>
+<hr>
+<h3 id="6-创建list"><a href="#6-创建list" class="headerlink" title="6.创建list"></a>6.创建list</h3><hr>
+<p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素。<br>比如，列出班里所有同学的名字，就可以用一个list表示：</p>
+<pre><code>&gt;&gt;&gt; [&apos;Michael&apos;, &apos;Bob&apos;, &apos;Tracy&apos;]
+</code></pre><p>[‘Michael’, ‘Bob’, ‘Tracy’]<br>list是数学意义上的有序集合，也就是说，list中的元素是按照顺序排列的。<br>构造list非常简单，按照上面的代码，直接用 [ ] 把list的所有元素都括起来，就是一个list对象。通常，我们会把list赋值给一个变量，这样，就可以通过变量来引用list：</p>
+<pre><code>&gt;&gt;&gt; classmates = [&apos;Michael&apos;, &apos;Bob&apos;, &apos;Tracy&apos;]
+&gt;&gt;&gt; classmates # 打印classmates变量的内容
+</code></pre><p>[‘Michael’, ‘Bob’, ‘Tracy’]<br>由于Python是动态语言，所以list中包含的元素并不要求都必须是同一种数据类型，我们完全可以在list中包含各种数据：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Michael&apos;, 100, True]
+</code></pre><p>一个元素也没有的list，就是空list：</p>
+<pre><code>&gt;&gt;&gt; empty_list = []
+</code></pre><hr>
+<h3 id="7-list"><a href="#7-list" class="headerlink" title="7.list"></a>7.list</h3><h4 id="7-1-按照索引访问list"><a href="#7-1-按照索引访问list" class="headerlink" title="7.1 按照索引访问list"></a>7.1 按照索引访问list</h4><hr>
+<p>由于list是一个有序集合，所以，我们可以用一个list按分数从高到低表示出班里的3个同学：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+</code></pre><p>那我们如何从list中获取指定第 N 名的同学呢？方法是通过索引来获取list中的指定元素。<br>需要特别注意的是，索引从 0 开始，也就是说，第一个元素的索引是0，第二个元素的索引是1，以此类推。<br>因此，要打印第一名同学的名字，用 L[0]:</p>
+<pre><code>&gt;&gt;&gt; print L[0]
+</code></pre><p>Adam<br>要打印第二名同学的名字，用 L[1]:</p>
+<pre><code>&gt;&gt;&gt; print L[1]
+</code></pre><p>Lisa<br>要打印第三名同学的名字，用 L[2]:</p>
+<pre><code>&gt;&gt;&gt; print L[2]
+</code></pre><p>Bart<br>要打印第四名同学的名字，用 L[3]:</p>
+<pre><code>&gt;&gt;&gt; print L[3]
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>IndexError: list index out of range<br>报错了！IndexError意思就是索引超出了范围，因为上面的list只有3个元素，有效的索引是 0，1，2。<br>所以，使用索引时，千万注意不要越界。</module></stdin></p>
+<hr>
+<h4 id="7-2-倒序访问list"><a href="#7-2-倒序访问list" class="headerlink" title="7.2 倒序访问list"></a>7.2 倒序访问list</h4><hr>
+<p>我们还是用一个list按分数从高到低表示出班里的3个同学：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+</code></pre><p>这时，老师说，请分数最低的同学站出来。<br>要写代码完成这个任务，我们可以先数一数这个 list，发现它包含3个元素，因此，最后一个元素的索引是2：</p>
+<pre><code>&gt;&gt;&gt; print L[2]
+</code></pre><p>Bart<br>有没有更简单的方法？<br>有！<br>Bart同学是最后一名，俗称倒数第一，所以，我们可以用 -1 这个索引来表示最后一个元素：</p>
+<pre><code>&gt;&gt;&gt; print L[-1]
+</code></pre><p>Bart<br>Bart同学表示躺枪。<br>类似的，倒数第二用 -2 表示，倒数第三用 -3 表示，倒数第四用 -4 表示：</p>
+<pre><code>&gt;&gt;&gt; print L[-2]
+</code></pre><p>Lisa</p>
+<pre><code>&gt;&gt;&gt; print L[-3]
+</code></pre><p>Adam</p>
+<pre><code>&gt;&gt;&gt; print L[-4]
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>IndexError: list index out of range<br>L[-4] 报错了，因为倒数第四不存在，一共只有3个元素。<br>使用倒序索引时，也要注意不要越界。</module></stdin></p>
+<hr>
+<h4 id="7-3-添加新元素"><a href="#7-3-添加新元素" class="headerlink" title="7.3 添加新元素"></a>7.3 添加新元素</h4><hr>
+<p>现在，班里有3名同学：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+</code></pre><p>今天，班里转来一名新同学 Paul，如何把新同学添加到现有的 list 中呢？<br>第一个办法是用 list 的 append() 方法，把新同学追加到 list 的末尾：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+&gt;&gt;&gt; L.append(&apos;Paul&apos;)
+&gt;&gt;&gt; print L
+</code></pre><p>[‘Adam’, ‘Lisa’, ‘Bart’, ‘Paul’]<br>append()总是把新的元素添加到 list 的尾部。<br>如果 Paul 同学表示自己总是考满分，要求添加到第一的位置，怎么办？<br>方法是用list的 insert()方法，它接受两个参数，第一个参数是索引号，第二个参数是待添加的新元素：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+&gt;&gt;&gt; L.insert(0, &apos;Paul&apos;)
+&gt;&gt;&gt; print L
+</code></pre><p>[‘Paul’, ‘Adam’, ‘Lisa’, ‘Bart’]<br>L.insert(0, ‘Paul’) 的意思是，’Paul’将被添加到索引为 0 的位置上（也就是第一个），而原来索引为 0 的Adam同学，以及后面的所有同学，都自动向后移动一位。</p>
+<hr>
+<h4 id="7-4-从list删除元素"><a href="#7-4-从list删除元素" class="headerlink" title="7.4 从list删除元素"></a>7.4 从list删除元素</h4><hr>
+<p>Paul同学刚来几天又要转走了，那么我们怎么把Paul 从现有的list中删除呢？<br>如果Paul同学排在最后一个，我们可以用list的pop()方法删除：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Paul&apos;]
+&gt;&gt;&gt; L.pop()
+</code></pre><p>‘Paul’</p>
+<pre><code>&gt;&gt;&gt; print L
+</code></pre><p>[‘Adam’, ‘Lisa’, ‘Bart’]<br>pop()方法总是删掉list的最后一个元素，并且它还返回这个元素，所以我们执行 L.pop() 后，会打印出 ‘Paul’。<br>如果Paul同学不是排在最后一个怎么办？比如Paul同学排在第三：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Paul&apos;, &apos;Bart&apos;]
+</code></pre><p>要把Paul踢出list，我们就必须先定位Paul的位置。由于Paul的索引是2，因此，用 pop(2)把Paul删掉：</p>
+<pre><code>&gt;&gt;&gt; L.pop(2)
+</code></pre><p>‘Paul’</p>
+<pre><code>&gt;&gt;&gt; print L
+</code></pre><p>[‘Adam’, ‘Lisa’, ‘Bart’]</p>
+<hr>
+<h4 id="7-5-替换元素"><a href="#7-5-替换元素" class="headerlink" title="7.5 替换元素"></a>7.5 替换元素</h4><hr>
+<p>假设现在班里仍然是3名同学：</p>
+<pre><code>&gt;&gt;&gt; L = [&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;]
+</code></pre><p>现在，Bart同学要转学走了，碰巧来了一个Paul同学，要更新班级成员名单，我们可以先把Bart删掉，再把Paul添加进来。<br>另一个办法是直接用Paul把Bart给替换掉：</p>
+<pre><code>&gt;&gt;&gt; L[2] = &apos;Paul&apos;
+&gt;&gt;&gt; print L
+</code></pre><p>L = [‘Adam’, ‘Lisa’, ‘Paul’]<br>对list中的某一个索引赋值，就可以直接用新的元素替换掉原来的元素，list包含的元素个数保持不变。<br>由于Bart还可以用 -1 做索引，因此，下面的代码也可以完成同样的替换工作：</p>
+<pre><code>&gt;&gt;&gt; L[-1] = &apos;Paul&apos;
+</code></pre><hr>
+<h3 id="8-tuple"><a href="#8-tuple" class="headerlink" title="8. tuple"></a>8. tuple</h3><h4 id="8-1-创建tuple"><a href="#8-1-创建tuple" class="headerlink" title="8.1 创建tuple"></a>8.1 创建tuple</h4><hr>
+<p>tuple是另一种有序的列表，中文翻译为“ 元组 ”。tuple 和 list 非常类似，但是，tuple一旦创建完毕，就不能修改了。<br>同样是表示班里同学的名称，用tuple表示如下：</p>
+<pre><code>&gt;&gt;&gt; t = (&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;)
+</code></pre><p>创建tuple和创建list唯一不同之处是用( )替代了[ ]。<br>现在，这个 t 就不能改变了，tuple没有 append()方法，也没有insert()和pop()方法。所以，新同学没法直接往 tuple 中添加，老同学想退出 tuple 也不行。<br>获取 tuple 元素的方式和 list 是一模一样的，我们可以正常使用 t[0]，t[-1]等索引方式访问元素，但是不能赋值成别的元素，不信可以试试：</p>
+<pre><code>&gt;&gt;&gt; t[0] = &apos;Paul&apos;
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>TypeError: ‘tuple’ object does not support item assignment</module></stdin></p>
+<hr>
+<h4 id="8-2-创建单元素tuple"><a href="#8-2-创建单元素tuple" class="headerlink" title="8.2 创建单元素tuple"></a>8.2 创建单元素tuple</h4><hr>
+<p>tuple和list一样，可以包含 0 个、1个和任意多个元素。<br>包含多个元素的 tuple，前面我们已经创建过了。<br>包含 0 个元素的 tuple，也就是空tuple，直接用 ()表示：</p>
+<pre><code>&gt;&gt;&gt; t = ()
+&gt;&gt;&gt; print t
+</code></pre><p>()<br>创建包含1个元素的 tuple 呢？来试试：</p>
+<pre><code>&gt;&gt;&gt; t = (1)
+&gt;&gt;&gt; print t
+</code></pre><p>1<br>好像哪里不对！t 不是 tuple ，而是整数1。为什么呢？<br>因为()既可以表示tuple，又可以作为括号表示运算时的优先级，结果 (1) 被Python解释器计算出结果 1，导致我们得到的不是tuple，而是整数 1。<br>正是因为用()定义单元素的tuple有歧义，所以 Python 规定，单元素 tuple 要多加一个逗号“,”，这样就避免了歧义：</p>
+<pre><code>&gt;&gt;&gt; t = (1,)
+&gt;&gt;&gt; print t
+</code></pre><p>(1,)<br>Python在打印单元素tuple时，也自动添加了一个“,”，为了更明确地告诉你这是一个tuple。<br>多元素 tuple 加不加这个额外的“,”效果是一样的：</p>
+<pre><code>&gt;&gt;&gt; t = (1, 2, 3,)
+&gt;&gt;&gt; print t
+</code></pre><p>(1, 2, 3)</p>
+<hr>
+<h4 id="8-3-“可变”的tuple"><a href="#8-3-“可变”的tuple" class="headerlink" title="8.3 “可变”的tuple"></a>8.3 “可变”的tuple</h4><hr>
+<p>前面我们看到了tuple一旦创建就不能修改。现在，我们来看一个“可变”的tuple：</p>
+<pre><code>&gt;&gt;&gt; t = (&apos;a&apos;, &apos;b&apos;, [&apos;A&apos;, &apos;B&apos;])
+</code></pre><p>注意到 t 有 3 个元素：’a’，’b’和一个list：[‘A’, ‘B’]。list作为一个整体是tuple的第3个元素。list对象可以通过 t[2] 拿到：</p>
+<pre><code>&gt;&gt;&gt; L = t[2]
+</code></pre><p>然后，我们把list的两个元素改一改：</p>
+<pre><code>&gt;&gt;&gt; L[0] = &apos;X&apos;
+&gt;&gt;&gt; L[1] = &apos;Y&apos;
+</code></pre><p>再看看tuple的内容：</p>
+<pre><code>&gt;&gt;&gt; print t
+</code></pre><p>(‘a’, ‘b’, [‘X’, ‘Y’])<br>不是说tuple一旦定义后就不可变了吗？怎么现在又变了？<br>别急，我们先看看定义的时候tuple包含的3个元素：</p>
+<p>当我们把list的元素’A’和’B’修改为’X’和’Y’后，tuple变为：</p>
+<p>表面上看，tuple的元素确实变了，但其实变的不是 tuple 的元素，而是list的元素。<br>tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向’a’，就不能改成指向’b’，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！<br>理解了“指向不变”后，要创建一个内容也不变的tuple怎么做？那就必须保证tuple的每一个元素本身也不能变</p>
+<hr>
+<h4 id="9-if语句"><a href="#9-if语句" class="headerlink" title="9 if语句"></a>9 if语句</h4><hr>
+<p>判断。<br>比如，输入用户年龄，根据年龄打印不同的内容，在Python程序中，可以用if语句实现：<br>age = 20<br>if age &gt;= 18:<br>    print ‘your age is’, age<br>    print ‘adult’<br>print ‘END’<br>注意: Python代码的缩进规则。具有相同缩进的代码被视为代码块，上面的3，4行 print 语句就构成一个代码块（但不包括第5行的print）。如果 if 语句判断为 True，就会执行这个代码块。<br>缩进请严格按照Python的习惯写法：4个空格，不要使用Tab，更不要混合Tab和空格，否则很容易造成因为缩进引起的语法错误。<br>注意: if 语句后接表达式，然后用:表示代码块开始。<br>如果你在Python交互环境下敲代码，还要特别留意缩进，并且退出缩进需要多敲一行回车：</p>
+<pre><code>&gt;&gt;&gt; age = 20
+&gt;&gt;&gt; if age &gt;= 18:
+</code></pre><p>…     print ‘your age is’, age<br>…     print ‘adult’<br>…<br>your age is 20<br>adult</p>
+<hr>
+<h3 id="10-if-else语句"><a href="#10-if-else语句" class="headerlink" title="10. if-else语句"></a>10. if-else语句</h3><hr>
+<p>当 if 语句判断表达式的结果为 True 时，就会执行 if 包含的代码块：<br>if age &gt;= 18:<br>    print ‘adult’<br>如果我们想判断年龄在18岁以下时，打印出 ‘teenager’，怎么办？<br>方法是再写一个 if:<br>if age &lt; 18:<br>    print ‘teenager’<br>或者用 not 运算：<br>if not age &gt;= 18:<br>    print ‘teenager’<br>细心的同学可以发现，这两种条件判断是“非此即彼”的，要么符合条件1，要么符合条件2，因此，完全可以用一个 if … else … 语句把它们统一起来：<br>if age &gt;= 18:<br>    print ‘adult’<br>else:<br>    print ‘teenager’<br>利用 if … else … 语句，我们可以根据条件表达式的值为 True 或者 False ，分别执行 if 代码块或者 else 代码块。<br>注意: else 后面有个“:”。</p>
+<hr>
+<h3 id="11-if-elif-else"><a href="#11-if-elif-else" class="headerlink" title="11. if-elif-else"></a>11. if-elif-else</h3><hr>
+<p>有的时候，一个 if … else … 还不够用。比如，根据年龄的划分：<br>条件1：18岁或以上：adult<br>条件2：6岁或以上：teenager<br>条件3：6岁以下：kid<br>我们可以用一个 if age &gt;= 18 判断是否符合条件1，如果不符合，再通过一个 if 判断 age &gt;= 6 来判断是否符合条件2，否则，执行条件3：<br>if age &gt;= 18:<br>    print ‘adult’<br>else:<br>    if age &gt;= 6:<br>        print ‘teenager’<br>    else:<br>        print ‘kid’<br>这样写出来，我们就得到了一个两层嵌套的 if … else … 语句。这个逻辑没有问题，但是，如果继续增加条件，比如3岁以下是 baby：<br>if age &gt;= 18:<br>    print ‘adult’<br>else:<br>    if age &gt;= 6:<br>        print ‘teenager’<br>    else:<br>        if age &gt;= 3:<br>            print ‘kid’<br>        else:<br>            print ‘baby’<br>这种缩进只会越来越多，代码也会越来越难看。<br>要避免嵌套结构的 if … else …，我们可以用 if … 多个elif … else … 的结构，一次写完所有的规则：<br>if age &gt;= 18:<br>    print ‘adult’<br>elif age &gt;= 6:<br>    print ‘teenager’<br>elif age &gt;= 3:<br>    print ‘kid’<br>else:<br>    print ‘baby’<br>elif 意思就是 else if。这样一来，我们就写出了结构非常清晰的一系列条件判断。<br>特别注意: 这一系列条件判断会从上到下依次判断，如果某个判断为 True，执行完对应的代码块，后面的条件判断就直接忽略，不再执行了。</p>
+<hr>
+<h3 id="12-for循环"><a href="#12-for循环" class="headerlink" title="12. for循环"></a>12. for循环</h3><hr>
+<p>list或tuple可以表示一个有序集合。如果我们想依次访问一个list中的每一个元素呢？比如 list：<br>L = [‘Adam’, ‘Lisa’, ‘Bart’]<br>print L[0]<br>print L[1]<br>print L[2]<br>如果list只包含几个元素，这样写还行，如果list包含1万个元素，我们就不可能写1万行print。<br>这时，循环就派上用场了。<br>Python的 for 循环就可以依次把list或tuple的每个元素迭代出来：<br>L = [‘Adam’, ‘Lisa’, ‘Bart’]<br>for name in L:<br>    print name<br>注意:  name 这个变量是在 for 循环中定义的，意思是，依次取出list中的每一个元素，并把元素赋值给 name，然后执行for循环体（就是缩进的代码块）。<br>这样一来，遍历一个list或tuple就非常容易了。</p>
+<hr>
+<h3 id="13-while循环"><a href="#13-while循环" class="headerlink" title="13. while循环"></a>13. while循环</h3><hr>
+<p>和 for 循环不同的另一种循环是 while 循环，while 循环不会迭代 list 或 tuple 的元素，而是根据表达式判断循环是否结束。<br>比如要从 0 开始打印不大于 N 的整数：<br>N = 10<br>x = 0<br>while x &lt; N:<br>    print x<br>    x = x + 1<br>while循环每次先判断 x &lt; N，如果为True，则执行循环体的代码块，否则，退出循环。<br>在循环体内，x = x + 1 会让 x 不断增加，最终因为 x &lt; N 不成立而退出循环。<br>如果没有这一个语句，while循环在判断 x &lt; N 时总是为True，就会无限循环下去，变成死循环，所以要特别留意while循环的退出条件。</p>
+<hr>
+<h3 id="14-break退出循环"><a href="#14-break退出循环" class="headerlink" title="14. break退出循环"></a>14. break退出循环</h3><hr>
+<p>用 for 循环或者 while 循环时，如果要在循环体内直接退出循环，可以使用 break 语句。<br>比如计算1至100的整数和，我们用while来实现：<br>sum = 0<br>x = 1<br>while True:<br>    sum = sum + x<br>    x = x + 1<br>    if x &gt; 100:<br>        break<br>print sum<br>咋一看， while True 就是一个死循环，但是在循环体内，我们还判断了 x &gt; 100 条件成立时，用break语句退出循环，这样也可以实现循环的结束。</p>
+<p>利用 while True 无限循环配合 break 语句，计算 1 + 2 + 4 + 8 + 16 + … 的前20项的和。<br>sum = 0<br>x = 1<br>n = 1<br>while True:<br>    if n &gt; 20:<br>        break<br>    sum = sum + x<br>    x = x * 2<br>    n = n + 1<br>print sum</p>
+<hr>
+<h3 id="15-continue继续循环"><a href="#15-continue继续循环" class="headerlink" title="15. continue继续循环"></a>15. continue继续循环</h3><hr>
+<p>在循环过程中，可以用break退出当前循环，还可以用continue跳过后续循环代码，继续下一次循环。<br>假设我们已经写好了利用for循环计算平均分的代码：<br>L = [75, 98, 59, 81, 66, 43, 69, 85]<br>sum = 0.0<br>n = 0<br>for x in L:<br>    sum = sum + x<br>    n = n + 1<br>print sum / n<br>现在老师只想统计及格分数的平均分，就要把 x &lt; 60 的分数剔除掉，这时，利用 continue，可以做到当 x &lt; 60的时候，不继续执行循环体的后续代码，直接进入下一次循环：<br>for x in L:<br>    if x &lt; 60:<br>        continue<br>    sum = sum + x<br>    n = n + 1</p>
+<p>对已有的计算 0 - 100 的while循环进行改造，通过增加 continue 语句，使得只计算奇数的和：<br>sum = 0<br>x = 1<br>while True:<br>    sum = sum + x<br>    x = x + 1<br>    if x &gt; 100:<br>        break<br>print sum<br>或者<br>sum = 0<br>x = 0<br>while True:<br>    x = x + 1<br>    if x &gt; 100:<br>        break<br>    if x  % 2 ==0:<br>        continue<br>    sum = sum + x<br>print sum</p>
+<hr>
+<h3 id="16-多重循环"><a href="#16-多重循环" class="headerlink" title="16. 多重循环"></a>16. 多重循环</h3><hr>
+<p>在循环内部，还可以嵌套循环，我们来看一个例子：<br>for x in [‘A’, ‘B’, ‘C’]:<br>    for y in [‘1’, ‘2’, ‘3’]:<br>        print x + y<br>x 每循环一次，y 就会循环 3 次，这样，我们可以打印出一个全排列：<br>A1<br>A2<br>A3<br>B1<br>B2<br>B3<br>C1<br>C2<br>C3</p>
+<p>对100以内的两位数，请使用一个两重循环打印出所有十位数数字比个位数数字小的数，例如，23（2 &lt; 3）。<br>十位数循环从1至9，个位数循环从0至9。<br>参考代码:<br>for x in [1, 2, 3, 4, 5, 6, 7, 8, 9]:<br>    for y in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:<br>        if x &lt; y:<br>            print x * 10 + y</p>
+<hr>
+<h3 id="17-什么是dict"><a href="#17-什么是dict" class="headerlink" title="17 什么是dict"></a>17 什么是dict</h3><hr>
+<p>我们已经知道，list 和 tuple 可以用来表示顺序集合，例如，班里同学的名字：<br>[‘Adam’, ‘Lisa’, ‘Bart’]<br>或者考试的成绩列表：<br>[95, 85, 59]<br>但是，要根据名字找到对应的成绩，用两个 list 表示就不方便。<br>如果把名字和分数关联起来，组成类似的查找表：<br>‘Adam’ ==&gt; 95<br>‘Lisa’ ==&gt; 85<br>‘Bart’ ==&gt; 59<br>给定一个名字，就可以直接查到分数。<br>Python的 dict 就是专门干这件事的。用 dict 表示“名字”-“成绩”的查找表如下：<br>d = {<br>    ‘Adam’: 95,<br>    ‘Lisa’: 85,<br>    ‘Bart’: 59<br>}<br>我们把名字称为key，对应的成绩称为value，dict就是通过 key 来查找 value。<br>花括号 {} 表示这是一个dict，然后按照 key: value, 写出来即可。最后一个 key: value 的逗号可以省略。<br>由于dict也是集合，len() 函数可以计算任意集合的大小：</p>
+<pre><code>&gt;&gt;&gt; len(d)
+</code></pre><p>3<br>注意: 一个 key-value 算一个，因此，dict大小为3。</p>
+<hr>
+<h4 id="17-1-访问dict"><a href="#17-1-访问dict" class="headerlink" title="17.1 访问dict"></a>17.1 访问dict</h4><hr>
+<p>我们已经能创建一个dict，用于表示名字和成绩的对应关系：<br>d = {<br>    ‘Adam’: 95,<br>    ‘Lisa’: 85,<br>    ‘Bart’: 59<br>}<br>那么，如何根据名字来查找对应的成绩呢？<br>可以简单地使用 d[key] 的形式来查找对应的 value，这和 list 很像，不同之处是，list 必须使用索引返回对应的元素，而dict使用key：</p>
+<pre><code>&gt;&gt;&gt; print d[&apos;Adam&apos;]
+</code></pre><p>95</p>
+<pre><code>&gt;&gt;&gt; print d[&apos;Paul&apos;]
+</code></pre><p>Traceback (most recent call last):<br>  File “index.py”, line 11, in <module><br>    print d[‘Paul’]<br>KeyError: ‘Paul’<br>注意: 通过 key 访问 dict 的value，只要 key 存在，dict就返回对应的value。如果key不存在，会直接报错：KeyError。<br>要避免 KeyError 发生，有两个办法：<br>一是先判断一下 key 是否存在，用 in 操作符：<br>if ‘Paul’ in d:<br>    print d[‘Paul’]<br>如果 ‘Paul’ 不存在，if语句判断为False，自然不会执行 print d[‘Paul’] ，从而避免了错误。<br>二是使用dict本身提供的一个 get 方法，在Key不存在的时候，返回None：</module></p>
+<pre><code>&gt;&gt;&gt; print d.get(&apos;Bart&apos;)
+</code></pre><p>59</p>
+<pre><code>&gt;&gt;&gt; print d.get(&apos;Paul&apos;)
+</code></pre><p>None</p>
+<hr>
+<h4 id="17-2-dict的特点"><a href="#17-2-dict的特点" class="headerlink" title="17.2 dict的特点"></a>17.2 dict的特点</h4><hr>
+<p>dict的第一个特点是查找速度快，无论dict有10个元素还是10万个元素，查找速度都一样。而list的查找速度随着元素增加而逐渐下降。<br>不过dict的查找速度快不是没有代价的，dict的缺点是占用内存大，还会浪费很多内容，list正好相反，占用内存小，但是查找速度慢。<br>由于dict是按 key 查找，所以，在一个dict中，key不能重复。<br>dict的第二个特点就是存储的key-value序对是没有顺序的！这和list不一样：<br>d = {<br>    ‘Adam’: 95,<br>    ‘Lisa’: 85,<br>    ‘Bart’: 59<br>}<br>当我们试图打印这个dict时：</p>
+<pre><code>&gt;&gt;&gt; print d
+</code></pre><p>{‘Lisa’: 85, ‘Adam’: 95, ‘Bart’: 59}<br>打印的顺序不一定是我们创建时的顺序，而且，不同的机器打印的顺序都可能不同，这说明dict内部是无序的，不能用dict存储有序的集合。<br>dict的第三个特点是作为 key 的元素必须不可变，Python的基本类型如字符串、整数、浮点数都是不可变的，都可以作为 key。但是list是可变的，就不能作为 key。<br>可以试试用list作为key时会报什么样的错误。<br>不可变这个限制仅作用于key，value是否可变无所谓：<br>{<br>    ‘123’: [1, 2, 3],  # key 是 str，value是list<br>    123: ‘123’,  # key 是 int，value 是 str<br>    (‘a’, ‘b’): True  # key 是 tuple，并且tuple的每个元素都是不可变对象，value是 boolean<br>}<br>最常用的key还是字符串，因为用起来最方便。</p>
+<hr>
+<h4 id="17-3-更新dict"><a href="#17-3-更新dict" class="headerlink" title="17.3 更新dict"></a>17.3 更新dict</h4><hr>
+<p>dict是可变的，也就是说，我们可以随时往dict中添加新的 key-value。比如已有dict：<br>d = {<br>    ‘Adam’: 95,<br>    ‘Lisa’: 85,<br>    ‘Bart’: 59<br>}<br>要把新同学’Paul’的成绩 72 加进去，用赋值语句：</p>
+<pre><code>&gt;&gt;&gt; d[&apos;Paul&apos;] = 72
+</code></pre><p>再看看dict的内容：</p>
+<pre><code>&gt;&gt;&gt; print d
+</code></pre><p>{‘Lisa’: 85, ‘Paul’: 72, ‘Adam’: 95, ‘Bart’: 59}<br>如果 key 已经存在，则赋值会用新的 value 替换掉原来的 value：</p>
+<pre><code>&gt;&gt;&gt; d[&apos;Bart&apos;] = 60
+&gt;&gt;&gt; print d
+</code></pre><p>{‘Lisa’: 85, ‘Paul’: 72, ‘Adam’: 95, ‘Bart’: 60}</p>
+<hr>
+<h4 id="17-4-遍历dict"><a href="#17-4-遍历dict" class="headerlink" title="17.4 遍历dict"></a>17.4 遍历dict</h4><hr>
+<p>由于dict也是一个集合，所以，遍历dict和遍历list类似，都可以通过 for 循环实现。<br>直接使用for循环可以遍历 dict 的 key：</p>
+<pre><code>&gt;&gt;&gt; d = { &apos;Adam&apos;: 95, &apos;Lisa&apos;: 85, &apos;Bart&apos;: 59 }
+&gt;&gt;&gt; for key in d:
+ print key
+</code></pre><p>Lisa<br>Adam<br>Bart<br>由于通过 key 可以获取对应的 value，因此，在循环体内，可以获取到value的值。</p>
+<hr>
+<h3 id="18-什么是set"><a href="#18-什么是set" class="headerlink" title="18 什么是set"></a>18 什么是set</h3><hr>
+<p>dict的作用是建立一组 key 和一组 value 的映射关系，dict的key是不能重复的。<br>有的时候，我们只想要 dict 的 key，不关心 key 对应的 value，目的就是保证这个集合的元素不会重复，这时，set就派上用场了。<br>set 持有一系列元素，这一点和 list 很像，但是set的元素没有重复，而且是无序的，这点和 dict 的 key很像。<br>创建 set 的方式是调用 set() 并传入一个 list，list的元素将作为set的元素：</p>
+<pre><code>&gt;&gt;&gt; s = set([&apos;A&apos;, &apos;B&apos;, &apos;C&apos;])
+</code></pre><p>可以查看 set 的内容：</p>
+<pre><code>&gt;&gt;&gt; print s
+</code></pre><p>set([‘A’, ‘C’, ‘B’])<br>请注意，上述打印的形式类似 list， 但它不是 list，仔细看还可以发现，打印的顺序和原始 list 的顺序有可能是不同的，因为set内部存储的元素是无序的。<br>因为set不能包含重复的元素，所以，当我们传入包含重复元素的 list 会怎么样呢？</p>
+<pre><code>&gt;&gt;&gt; s = set([&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;C&apos;])
+&gt;&gt;&gt; print s
+</code></pre><p>set([‘A’, ‘C’, ‘B’])</p>
+<pre><code>&gt;&gt;&gt; len(s)
+</code></pre><p>3<br>结果显示，set会自动去掉重复的元素，原来的list有4个元素，但set只有3个元素。</p>
+<hr>
+<h4 id="18-1-访问set"><a href="#18-1-访问set" class="headerlink" title="18.1 访问set"></a>18.1 访问set</h4><hr>
+<p>由于set存储的是无序集合，所以我们没法通过索引来访问。<br>访问 set中的某个元素实际上就是判断一个元素是否在set中。<br>例如，存储了班里同学名字的set：</p>
+<pre><code>&gt;&gt;&gt; s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;, &apos;Paul&apos;])
+</code></pre><p>我们可以用 in 操作符判断：<br>Bart是该班的同学吗？</p>
+<pre><code>&gt;&gt;&gt; &apos;Bart&apos; in s
+</code></pre><p>True<br>Bill是该班的同学吗？</p>
+<pre><code>&gt;&gt;&gt; &apos;Bill&apos; in s
+</code></pre><p>False<br>bart是该班的同学吗？</p>
+<pre><code>&gt;&gt;&gt; &apos;bart&apos; in s
+</code></pre><p>False<br>看来大小写很重要，’Bart’ 和 ‘bart’被认为是两个不同的元素。</p>
+<hr>
+<h4 id="18-2-set的特点"><a href="#18-2-set的特点" class="headerlink" title="18.2 set的特点"></a>18.2 set的特点</h4><hr>
+<p>set的内部结构和dict很像，唯一区别是不存储value，因此，判断一个元素是否在set中速度很快。<br>set存储的元素和dict的key类似，必须是不变对象，因此，任何可变对象是不能放入set中的。<br>最后，set存储的元素也是没有顺序的。<br>set的这些特点，可以应用在哪些地方呢？<br>星期一到星期日可以用字符串’MON’, ‘TUE’, … ‘SUN’表示。<br>假设我们让用户输入星期一至星期日的某天，如何判断用户的输入是否是一个有效的星期呢？<br>可以用 if 语句判断，但这样做非常繁琐：<br>x = ‘???’ # 用户输入的字符串<br>if x!= ‘MON’ and x!= ‘TUE’ and x!= ‘WED’ … and x!= ‘SUN’:<br>    print ‘input error’<br>else:<br>    print ‘input ok’<br>注意：if 语句中的…表示没有列出的其它星期名称，测试时，请输入完整。<br>如果事先创建好一个set，包含’MON’ ~ ‘SUN’：<br>weekdays = set([‘MON’, ‘TUE’, ‘WED’, ‘THU’, ‘FRI’, ‘SAT’, ‘SUN’])<br>再判断输入是否有效，只需要判断该字符串是否在set中：<br>x = ‘???’ # 用户输入的字符串<br>if x in weekdays:<br>    print ‘input ok’<br>else:<br>    print ‘input error’<br>这样一来，代码就简单多了。</p>
+<hr>
+<h4 id="18-3-遍历set"><a href="#18-3-遍历set" class="headerlink" title="18.3 遍历set"></a>18.3 遍历set</h4><hr>
+<p>由于 set 也是一个集合，所以，遍历 set 和遍历 list 类似，都可以通过 for 循环实现。<br>直接使用 for 循环可以遍历 set 的元素：</p>
+<pre><code>&gt;&gt;&gt; s = set([&apos;Adam&apos;, &apos;Lisa&apos;, &apos;Bart&apos;])
+&gt;&gt;&gt; for name in s:
+ print name
+</code></pre><p>Lisa<br>Adam<br>Bart<br>注意: 观察 for 循环在遍历set时，元素的顺序和list的顺序很可能是不同的，而且不同的机器上运行的结果也可能不同。</p>
+<hr>
+<h4 id="18-4-更新set"><a href="#18-4-更新set" class="headerlink" title="18.4 更新set"></a>18.4 更新set</h4><hr>
+<p>由于set存储的是一组不重复的无序元素，因此，更新set主要做两件事：<br>一是把新的元素添加到set中，二是把已有元素从set中删除。<br>添加元素时，用set的add()方法：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s.add(4)
+&gt;&gt;&gt; print s
+</code></pre><p>set([1, 2, 3, 4])<br>如果添加的元素已经存在于set中，add()不会报错，但是不会加进去了：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s.add(3)
+&gt;&gt;&gt; print s
+</code></pre><p>set([1, 2, 3])<br>删除set中的元素时，用set的remove()方法：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3, 4])
+&gt;&gt;&gt; s.remove(4)
+&gt;&gt;&gt; print s
+</code></pre><p>set([1, 2, 3])<br>如果删除的元素不存在set中，remove()会报错：</p>
+<pre><code>&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s.remove(4)
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>KeyError: 4<br>所以用add()可以直接添加，而remove()前需要判断。</module></stdin></p>
+<hr>
+<h3 id="19-函数"><a href="#19-函数" class="headerlink" title="19. 函数"></a>19. 函数</h3><h4 id="19-1-什么是函数"><a href="#19-1-什么是函数" class="headerlink" title="19.1 什么是函数"></a>19.1 什么是函数</h4><hr>
+<p>我们知道圆的面积计算公式为：<br>S = πr²<br>当我们知道半径r的值时，就可以根据公式计算出面积。假设我们需要计算3个不同大小的圆的面积：<br>r1 = 12.34<br>r2 = 9.08<br>r3 = 73.1<br>s1 = 3.14 <em> r1 </em> r1<br>s2 = 3.14 <em> r2 </em> r2<br>s3 = 3.14 <em> r3 </em> r3<br>当代码出现有规律的重复的时候，你就需要当心了，每次写3.14 <em> x </em> x不仅很麻烦，而且，如果要把3.14改成3.14159265359的时候，得全部替换。<br>有了函数，我们就不再每次写s = 3.14 <em> x </em> x，而是写成更有意义的函数调用 s = area_of_circle(x)，而函数 area_of_circle 本身只需要写一次，就可以多次调用。<br>抽象是数学中非常常见的概念。举个例子：<br>计算数列的和，比如：1 + 2 + 3 + … + 100，写起来十分不方便，于是数学家发明了求和符号∑，可以把1 + 2 + 3 + … + 100记作：<br>100<br>∑n<br>n=1<br>这种抽象记法非常强大，因为我们看到∑就可以理解成求和，而不是还原成低级的加法运算。<br>而且，这种抽象记法是可扩展的，比如：<br>100<br>∑(n²+1)<br>n=1<br>还原成加法运算就变成了：<br>(1 x 1 + 1) + (2 x 2 + 1) + (3 x 3 + 1) + … + (100 x 100 + 1)<br>可见，借助抽象，我们才能不关心底层的具体计算过程，而直接在更高的层次上思考问题。<br>写计算机程序也是一样，函数就是最基本的一种代码抽象的方式。<br>Python不但能非常灵活地定义函数，而且本身内置了很多有用的函数，可以直接调用。</p>
+<hr>
+<h4 id="19-2-调用函数"><a href="#19-2-调用函数" class="headerlink" title="19.2 调用函数"></a>19.2 调用函数</h4><hr>
+<p>Python内置了很多有用的函数，我们可以直接调用。<br>要调用一个函数，需要知道函数的名称和参数，比如求绝对值的函数 abs，它接收一个参数。<br>可以直接从Python的官方网站查看文档：<br><a href="http://docs.python.org/2/library/functions.html#abs" target="_blank" rel="external">http://docs.python.org/2/library/functions.html#abs</a><br>也可以在交互式命令行通过 help(abs) 查看abs函数的帮助信息。<br>调用 abs 函数：</p>
+<pre><code>&gt;&gt;&gt; abs(100)
+</code></pre><p>100</p>
+<pre><code>&gt;&gt;&gt; abs(-20)
+</code></pre><p>20</p>
+<pre><code>&gt;&gt;&gt; abs(12.34)
+</code></pre><p>12.34<br>调用函数的时候，如果传入的参数数量不对，会报TypeError的错误，并且Python会明确地告诉你：abs()有且仅有1个参数，但给出了两个：</p>
+<pre><code>&gt;&gt;&gt; abs(1, 2)
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>TypeError: abs() takes exactly one argument (2 given)<br>如果传入的参数数量是对的，但参数类型不能被函数所接受，也会报TypeError的错误，并且给出错误信息：str是错误的参数类型：</module></stdin></p>
+<pre><code>&gt;&gt;&gt; abs(&apos;a&apos;)
+</code></pre><p>Traceback (most recent call last):<br>  File “<stdin>“, line 1, in <module><br>TypeError: bad operand type for abs(): ‘str’<br>而比较函数 cmp(x, y) 就需要两个参数，如果 x<y，返回 -1，如果="" x="=y，返回" 0，如果="">y，返回 1：</y，返回></module></stdin></p>
+<pre><code>&gt;&gt;&gt; cmp(1, 2)
+</code></pre><p>-1</p>
+<pre><code>&gt;&gt;&gt; cmp(2, 1)
+</code></pre><p>1</p>
+<pre><code>&gt;&gt;&gt; cmp(3, 3)
+</code></pre><p>0<br>Python内置的常用函数还包括数据类型转换函数，比如   int()函数可以把其他数据类型转换为整数：</p>
+<pre><code>&gt;&gt;&gt; int(&apos;123&apos;)
+</code></pre><p>123</p>
+<pre><code>&gt;&gt;&gt; int(12.34)
+</code></pre><p>12<br>str()函数把其他类型转换成 str：</p>
+<pre><code>&gt;&gt;&gt; str(123)
+</code></pre><p>‘123’</p>
+<pre><code>&gt;&gt;&gt; str(1.23)
+</code></pre><p>‘1.23’<br>任务<br>sum()函数接受一个list作为参数，并返回list所有元素之和。请计算 1<em>1 + 2</em>2 + 3<em>3 + … + 100</em>100。<br>首先，可以用 while 循环构造出 list。<br>参考代码:<br>L = []<br>x = 1<br>while x &lt;= 100:<br>    L.append(x * x)<br>    x = x + 1<br>print sum(L)</p>
+<hr>
+<h4 id="19-3-编写函数"><a href="#19-3-编写函数" class="headerlink" title="19.3 编写函数"></a>19.3 编写函数</h4><hr>
+<p>在Python中，定义一个函数要使用 def 语句，依次写出函数名、括号、括号中的参数和冒号:，然后，在缩进块中编写函数体，函数的返回值用 return 语句返回。<br>我们以自定义一个求绝对值的 my_abs 函数为例：<br>def my_abs(x):<br>    if x &gt;= 0:<br>        return x<br>    else:<br>        return -x<br>请注意，函数体内部的语句在执行时，一旦执行到return时，函数就执行完毕，并将结果返回。因此，函数内部通过条件判断和循环可以实现非常复杂的逻辑。<br>如果没有return语句，函数执行完毕后也会返回结果，只是结果为 None。<br>return None可以简写为return。<br>任务<br>请定义一个 square_of_sum 函数，它接受一个list，返回list中每个元素平方的和。</p>
+<p>for 循环可以取出list中每个元素。<br>参考代码:<br>def square_of_sum(L):<br>    sum = 0<br>    for x in L:<br>        sum = sum + x * x<br>    return sum<br>print square_of_sum([1, 2, 3, 4, 5])<br>print square_of_sum([-5, 0, 5, 15, 25])</p>
+<hr>
+<h4 id="19-4-返回多值"><a href="#19-4-返回多值" class="headerlink" title="19.4 返回多值"></a>19.4 返回多值</h4><hr>
+<p>函数可以返回多个值吗？答案是肯定的。<br>比如在游戏中经常需要从一个点移动到另一个点，给出坐标、位移和角度，就可以计算出新的坐标：</p>
+<h1 id="math包提供了sin-和-cos-函数，我们先用import引用它："><a href="#math包提供了sin-和-cos-函数，我们先用import引用它：" class="headerlink" title="math包提供了sin()和 cos()函数，我们先用import引用它："></a>math包提供了sin()和 cos()函数，我们先用import引用它：</h1><p>import math<br>def move(x, y, step, angle):<br>    nx = x + step <em> math.cos(angle)<br>    ny = y - step </em> math.sin(angle)<br>    return nx, ny<br>这样我们就可以同时获得返回值：</p>
+<pre><code>&gt;&gt;&gt; x, y = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print x, y
+</code></pre><p>151.961524227 70.0<br>但其实这只是一种假象，Python函数返回的仍然是单一值：</p>
+<pre><code>&gt;&gt;&gt; r = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print r
+</code></pre><p>(151.96152422706632, 70.0)<br>用print打印返回结果，原来返回值是一个tuple！<br>但是，在语法上，返回一个tuple可以省略括号，而多个变量可以同时接收一个tuple，按位置赋给对应的值，所以，Python的函数返回多值其实就是返回一个tuple，但写起来更方便。<br>一元二次方程的定义是：ax² + bx + c = 0<br>请编写一个函数，返回一元二次方程的两个解。<br>注意：Python的math包提供了sqrt()函数用于计算平方根。<br>请参考求根公式：x = (-b±√(b²-4ac)) / 2a<br>参考代码:<br>import math<br>def quadratic_equation(a, b, c):<br>    t = math.sqrt(b <em> b - 4 </em> a <em> c)<br>    return (-b + t) / (2 </em> a),( -b - t )/ (2 * a)<br>print quadratic_equation(2, 3, 0)<br>print quadratic_equation(1, -6, 5)</p>
+<hr>
+<h4 id="19-5-递归函数"><a href="#19-5-递归函数" class="headerlink" title="19.5 递归函数\"></a>19.5 递归函数\</h4><hr>
+<p>在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。<br>举个例子，我们来计算阶乘 n! = 1 <em> 2 </em> 3 <em> … </em> n，用函数 fact(n)表示，可以看出：<br>fact(n) = n! = 1 <em> 2 </em> 3 <em> … </em> (n-1) <em> n = (n-1)! </em> n = fact(n-1) <em> n<br>所以，fact(n)可以表示为 n </em> fact(n-1)，只有n=1时需要特殊处理。<br>于是，fact(n)用递归的方式写出来就是：<br>def fact(n):<br>    if n==1:<br>        return 1<br>    return n * fact(n - 1)<br>上面就是一个递归函数。可以试试：</p>
+<pre><code>&gt;&gt;&gt; fact(1)
+1
+&gt;&gt;&gt; fact(5)
+</code></pre><p>120</p>
+<pre><code>&gt;&gt;&gt; fact(100)
+</code></pre><p>93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000L<br>如果我们计算fact(5)，可以根据函数定义看到计算过程如下：<br>    ===&gt; fact(5)<br>    ===&gt; 5 <em> fact(4)<br>    ===&gt; 5 </em> (4 <em> fact(3))<br>    ===&gt; 5 </em> (4 <em> (3 </em> fact(2)))<br>    ===&gt; 5 <em> (4 </em> (3 <em> (2 </em> fact(1))))<br>    ===&gt; 5 <em> (4 </em> (3 <em> (2 </em> 1)))<br>    ===&gt; 5 <em> (4 </em> (3 <em> 2))<br>    ===&gt; 5 </em> (4 <em> 6)<br>    ===&gt; 5 </em> 24<br>    ===&gt; 120<br>递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。<br>使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。可以试试计算 fact(10000)。<br>任务<br>汉诺塔 (<a href="http://baike.baidu.com/view/191666.htm" target="_blank" rel="external">http://baike.baidu.com/view/191666.htm</a>) 的移动也可以看做是递归函数。<br>我们对柱子编号为a, b, c，将所有圆盘从a移到c可以描述为：<br>如果a只有一个圆盘，可以直接移动到c；<br>如果a有N个圆盘，可以看成a有1个圆盘（底盘） + (N-1)个圆盘，首先需要把 (N-1) 个圆盘移动到 b，然后，将 a的最后一个圆盘移动到c，再将b的(N-1)个圆盘移动到c。<br>请编写一个函数，给定输入 n, a, b, c，打印出移动的步骤：<br>move(n, a, b, c)<br>例如，输入 move(2, ‘A’, ‘B’, ‘C’)，打印出：<br>A –&gt; B<br>A –&gt; C<br>B –&gt; C<br>函数 move(n, a, b, c) 的定义是将 n 个圆盘从 a 借助 b 移动到 c。<br>参考代码:<br>def move(n, a, b, c):<br>    if n ==1:<br>        print a, ‘–&gt;’, c<br>        return<br>    move(n-1, a, c, b)<br>    print a, ‘–&gt;’, c<br>    move(n-1, b, a, c)<br>move(4, ‘A’, ‘B’, ‘C’)</p>
+<hr>
+<h4 id="19-6-定义默认参数"><a href="#19-6-定义默认参数" class="headerlink" title="19.6 定义默认参数"></a>19.6 定义默认参数</h4><hr>
+<hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://keepzhang.github.io/2016/03/31/python入门基础/" data-title="python入门基础 | 不会做饭的程序猿不是好架构狮" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/03/30/sublime-test2-快捷键/"  title="sublime test2 快捷键">
+ <strong>NEXT:</strong><br/> 
+ <span>sublime test2 快捷键
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据类型"><span class="toc-number">1.</span> <span class="toc-text">1.数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-整数"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 整数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-浮点数"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 浮点数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-字符串"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-布尔值"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 布尔值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-5-空值"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 空值</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-变量"><span class="toc-number">2.</span> <span class="toc-text">2.变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-字符串"><span class="toc-number">3.</span> <span class="toc-text">3.字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-raw字符串与多行字符串"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 raw字符串与多行字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-Unicode字符串"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Unicode字符串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-整数和浮点数"><span class="toc-number">4.</span> <span class="toc-text">4.整数和浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-布尔类型"><span class="toc-number">5.</span> <span class="toc-text">5.布尔类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-创建list"><span class="toc-number">6.</span> <span class="toc-text">6.创建list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-list"><span class="toc-number">7.</span> <span class="toc-text">7.list</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-按照索引访问list"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 按照索引访问list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-倒序访问list"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 倒序访问list</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-添加新元素"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 添加新元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-从list删除元素"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 从list删除元素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-5-替换元素"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 替换元素</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-tuple"><span class="toc-number">8.</span> <span class="toc-text">8. tuple</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-创建tuple"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 创建tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-创建单元素tuple"><span class="toc-number">8.2.</span> <span class="toc-text">8.2 创建单元素tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-“可变”的tuple"><span class="toc-number">8.3.</span> <span class="toc-text">8.3 “可变”的tuple</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-if语句"><span class="toc-number">8.4.</span> <span class="toc-text">9 if语句</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-if-else语句"><span class="toc-number">9.</span> <span class="toc-text">10. if-else语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-if-elif-else"><span class="toc-number">10.</span> <span class="toc-text">11. if-elif-else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-for循环"><span class="toc-number">11.</span> <span class="toc-text">12. for循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-while循环"><span class="toc-number">12.</span> <span class="toc-text">13. while循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-break退出循环"><span class="toc-number">13.</span> <span class="toc-text">14. break退出循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-continue继续循环"><span class="toc-number">14.</span> <span class="toc-text">15. continue继续循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16-多重循环"><span class="toc-number">15.</span> <span class="toc-text">16. 多重循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17-什么是dict"><span class="toc-number">16.</span> <span class="toc-text">17 什么是dict</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#17-1-访问dict"><span class="toc-number">16.1.</span> <span class="toc-text">17.1 访问dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-2-dict的特点"><span class="toc-number">16.2.</span> <span class="toc-text">17.2 dict的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-3-更新dict"><span class="toc-number">16.3.</span> <span class="toc-text">17.3 更新dict</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-4-遍历dict"><span class="toc-number">16.4.</span> <span class="toc-text">17.4 遍历dict</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18-什么是set"><span class="toc-number">17.</span> <span class="toc-text">18 什么是set</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#18-1-访问set"><span class="toc-number">17.1.</span> <span class="toc-text">18.1 访问set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-2-set的特点"><span class="toc-number">17.2.</span> <span class="toc-text">18.2 set的特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-3-遍历set"><span class="toc-number">17.3.</span> <span class="toc-text">18.3 遍历set</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#18-4-更新set"><span class="toc-number">17.4.</span> <span class="toc-text">18.4 更新set</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19-函数"><span class="toc-number">18.</span> <span class="toc-text">19. 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#19-1-什么是函数"><span class="toc-number">18.1.</span> <span class="toc-text">19.1 什么是函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-2-调用函数"><span class="toc-number">18.2.</span> <span class="toc-text">19.2 调用函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-3-编写函数"><span class="toc-number">18.3.</span> <span class="toc-text">19.3 编写函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-4-返回多值"><span class="toc-number">18.4.</span> <span class="toc-text">19.4 返回多值</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#math包提供了sin-和-cos-函数，我们先用import引用它："><span class="toc-number"></span> <span class="toc-text">math包提供了sin()和 cos()函数，我们先用import引用它：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#19-5-递归函数"><span class="toc-number">0.1.</span> <span class="toc-text">19.5 递归函数\</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#19-6-定义默认参数"><span class="toc-number">0.2.</span> <span class="toc-text">19.6 定义默认参数</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,i&#39;m keepzhang,this&#39;s my blog. <br/>
+			welcome  you to access my geek home!!!</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/keepzhang" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://keepzhang.github.io" target="_blank" title="Keep zhang">Keep zhang</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-75633118-1', 'auto');  
+ga('send', 'pageview');
+</script>
+
+
+  </body>
+</html>
