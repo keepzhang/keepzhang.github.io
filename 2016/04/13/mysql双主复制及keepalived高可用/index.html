@@ -9,7 +9,7 @@
     
     <meta name="author" content="Keep zhang">
     
-    <meta name="description" content="###实验环境介绍###
+    <meta name="description" content="###实验环境介绍
 
 
 
@@ -37,7 +37,7 @@ rhel-6.7
 
 
 VIP
-192.16">
+192.168.2">
     
     
     
@@ -69,7 +69,7 @@ VIP
 				<h1 class="site-name"><a href="/" title="不会做饭的程序猿不是好架构狮">不会做饭的程序猿不是好架构狮</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -82,7 +82,7 @@ VIP
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:keepzhang.github.io">
 					</form>
 					
@@ -106,7 +106,7 @@ VIP
     </p>
   <p class="article-time">
     <time datetime="2016-04-13T00:44:37.000Z" itemprop="datePublished">2016-04-13</time>
-    更新日期:<time datetime="2016-04-13T05:53:00.994Z" itemprop="dateModified">2016-04-13</time>
+    Updated:<time datetime="2016-04-13T05:56:17.945Z" itemprop="dateModified">2016-04-13</time>
     
   </p>
 </header>
@@ -114,12 +114,12 @@ VIP
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、mysql-yum安装"><span class="toc-number">1.</span> <span class="toc-text">1、mysql yum安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Adding-the-MySQL-Yum-Repository"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Adding the MySQL Yum Repository</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Selecting-a-Release-Series"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Selecting a Release Series</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-Installing-MySQL"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Installing MySQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql双主复制"><span class="toc-number">2.</span> <span class="toc-text">2 mysql双主复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建同步用户"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 创建同步用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-修改-etc-my-cnf-配置文件-为其添加以下内容"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 修改 /etc/my.cnf 配置文件,为其添加以下内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-分别重启服务器node1、node2上的mysql服务"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 分别重启服务器node1、node2上的mysql服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-分别在服务器node1、node2上查看做为主服务器状态"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 分别在服务器node1、node2上查看做为主服务器状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-分别在服务器node1、node2上用change-master语句指定同步位置"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 分别在服务器node1、node2上用change master语句指定同步位置 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-分别在服务器node1、node2上启动从服务器线程"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 分别在服务器node1、node2上启动从服务器线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-测试"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 测试</span></a></li></ol></li></ol>
 		</div>
 		
 		<hr>
-<p>###实验环境介绍###</p>
+<p>###实验环境介绍</p>
 <table>
 <thead>
 <tr>
@@ -168,8 +168,8 @@ VIP
 <p>#同步参数:</p>
 <p>#保证slave挂在任何一台master上都会接收到另一个master的写入信息<br>log-slave-updates<br>sync_binlog=1<br>auto_increment_offset=1<br>auto_increment_increment=2<br>slave-skip-errors=all #过滤掉一些没啥大问题的错误<br>在 node2上<br>[mysqld]<br>server-id=2 #设置一个不同的id、注意这里在my.cnf里面有个默认值是 1 、把默认值改掉、而不能新增一个server-id<br>log-bin=mysql-bin<br>binlog-do-db=db_rocky #需要记录二进制日志的数据库.如果有多个数据库可用逗号分隔,或者使用多个binlog-do-db选项<br>binlog-ignore-db=mysql #不需要记录进制日志的数据库.如果有多个数据库可用逗号分隔,或者使用多个binlog-ignore-db选项</p>
 <p>#需要同步的数据库<br>replicate-do-db=db_rocky #需要进行同步的数据库.如果有多个数据库可用逗号分隔,或者使用多个binlog-do-db选项<br>replicate-ignore-db=mysql,information_schema #不需要同步的数据库.如果有多个数据库可用逗号分隔,或者使用多个binlog-do-db选项</p>
-<p><strong>同步参数:
-</strong>保证slave挂在任何一台master上都会接收到另一个master的写入信息<br>log-slave-updates<br>sync_binlog=1<br>auto_increment_offset=2<br>auto_increment_increment=2<br>slave-skip-errors=all #过滤掉一些没啥大问题的错误</p>
+<p>**同步参数:</p>
+<p>**保证slave挂在任何一台master上都会接收到另一个master的写入信息<br>log-slave-updates<br>sync_binlog=1<br>auto_increment_offset=2<br>auto_increment_increment=2<br>slave-skip-errors=all #过滤掉一些没啥大问题的错误</p>
 <h4 id="2-3-分别重启服务器node1、node2上的mysql服务"><a href="#2-3-分别重启服务器node1、node2上的mysql服务" class="headerlink" title="2.3 分别重启服务器node1、node2上的mysql服务"></a>2.3 分别重启服务器node1、node2上的mysql服务</h4><h4 id="2-4-分别在服务器node1、node2上查看做为主服务器状态"><a href="#2-4-分别在服务器node1、node2上查看做为主服务器状态" class="headerlink" title="2.4 分别在服务器node1、node2上查看做为主服务器状态"></a>2.4 分别在服务器node1、node2上查看做为主服务器状态</h4><p>在node1<br>mysql&gt; flush tables with read lock;#防止进入新的数据<br>Query OK, 0 rows affected (0.00 sec)<br>mysql&gt; show master status\G     #不带分号，否则报错ERROR: No query specified<br><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>                   File: mysql-bin.000006<br>         Position: 1050<br>     Binlog_Do_DB: test<br> Binlog_Ignore_DB: mysql,information_schema,performance_schema,sys<br>Executed_Gtid_Set:<br>1 row in set (0.00 sec)<br>在node2<br>mysql&gt; flush tables with read lock;<br>Query OK, 0 rows affected (0.00 sec)<br>mysql&gt; show master status\G    #不带分号，否则报错ERROR: No query specified<br><strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong> 1. row <strong><strong><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></strong></strong><br>           File: mysql-bin.000003<br>         Position: 1068<br>     Binlog_Do_DB: test<br> Binlog_Ignore_DB: mysql,information_schema,performance_schema,sys<br>Executed_Gtid_Set:<br>1 row in set (0.01 sec)</p>
 <h4 id="2-5-分别在服务器node1、node2上用change-master语句指定同步位置"><a href="#2-5-分别在服务器node1、node2上用change-master语句指定同步位置" class="headerlink" title="2.5 分别在服务器node1、node2上用change master语句指定同步位置 :"></a>2.5 分别在服务器node1、node2上用change master语句指定同步位置 :</h4><p>在node1<br>如果已经start slave,需要执行stop slave;,并且unlock tables;<br>否则会出现如下错误：<br>ERROR 3021 (HY000): This operation cannot be performed with a running slave io thread; run STOP SLAVE IO_THREAD FOR CHANNEL ‘’ first.<br>ERROR 1192 (HY000): Can’t execute the given command because you have active locked tables or an active transaction</p>
 <p>mysql&gt; change master to master_host=’192.168.2.173’,master_user=’sync’,master_password=’ShenZhen_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000003’,master_log_pos=1068;   #对接点的信息<br>Query OK, 0 rows affected (0.05 sec)<br>在node2<br>如果已经start slave,需要执行stop slave;,并且unlock tables;<br>mysql&gt; change master to master_host=’192.168.2.172’,master_user=’sync’,master_password=’ShenZhou_CJ3’,<br>    -&gt; master_log_file=’mysql-bin.000006,master_log_pos=1050;<br>Query OK, 0 rows affected (0.15 sec)<br>注：master_log_file，master_log_pos由上面主服务器查出的状态值中确定<br>master_log_file对应File，master_log_pos对应Position<br>在node1、node2上<br>mysql&gt; unlock tables;<br>Query OK, 0 rows affected (0.00 sec)</p>
@@ -209,15 +209,15 @@ VIP
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、mysql-yum安装"><span class="toc-number">1.</span> <span class="toc-text">1、mysql yum安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-Adding-the-MySQL-Yum-Repository"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Adding the MySQL Yum Repository</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Selecting-a-Release-Series"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Selecting a Release Series</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-Installing-MySQL"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Installing MySQL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mysql双主复制"><span class="toc-number">2.</span> <span class="toc-text">2 mysql双主复制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-创建同步用户"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 创建同步用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-修改-etc-my-cnf-配置文件-为其添加以下内容"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 修改 /etc/my.cnf 配置文件,为其添加以下内容:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-分别重启服务器node1、node2上的mysql服务"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 分别重启服务器node1、node2上的mysql服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-分别在服务器node1、node2上查看做为主服务器状态"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 分别在服务器node1、node2上查看做为主服务器状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-分别在服务器node1、node2上用change-master语句指定同步位置"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 分别在服务器node1、node2上用change master语句指定同步位置 :</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-分别在服务器node1、node2上启动从服务器线程"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 分别在服务器node1、node2上启动从服务器线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-7-测试"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 测试</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -225,7 +225,7 @@ VIP
   
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+	<a href="null" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
