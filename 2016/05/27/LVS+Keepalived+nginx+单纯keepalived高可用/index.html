@@ -1,6 +1,6 @@
 
  <!DOCTYPE HTML>
-<html >
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   
@@ -35,9 +35,9 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="极客运维">极客运维</a></h1>
-				<h2 class="blog-motto"></h2>
+				<h2 class="blog-motto">不懂产品的运维不是好架构师</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -50,7 +50,7 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:keepzhang.github.io">
 					</form>
 					
@@ -74,7 +74,7 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
     </p>
   <p class="article-time">
     <time datetime="2016-05-27T02:00:20.000Z" itemprop="datePublished">2016-05-27</time>
-    Updated:<time datetime="2016-05-27T02:31:13.000Z" itemprop="dateModified">2016-05-27</time>
+    更新日期:<time datetime="2016-05-27T02:31:13.000Z" itemprop="dateModified">2016-05-27</time>
     
   </p>
 </header>
@@ -82,7 +82,7 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LVS"><span class="toc-number">1.</span> <span class="toc-text">LVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keepalvied"><span class="toc-number">2.</span> <span class="toc-text">Keepalvied</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-安装LVS和Keepalvied软件包"><span class="toc-number">2.1.</span> <span class="toc-text">一.安装LVS和Keepalvied软件包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Install-ipvsadm"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Install ipvsadm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-安装LVS和Keepalived"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.安装LVS和Keepalived</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-配置LVS实现负载均衡"><span class="toc-number">2.2.</span> <span class="toc-text">二.配置LVS实现负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-lvs-dr"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.lvs-dr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-lvs-realserver"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.lvs-realserver</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-利用Keepalvied結合lvs實現高可用实现负载均衡和和高可用性"><span class="toc-number">2.3.</span> <span class="toc-text">三.利用Keepalvied結合lvs實現高可用实现负载均衡和和高可用性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-配置在主负载均衡服务器上配置keepalived-conf"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.配置在主负载均衡服务器上配置keepalived.conf</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-在备用调度器上："><span class="toc-number">2.3.2.</span> <span class="toc-text">2.在备用调度器上：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-停Master服务器的keepalived服务，查看BAKCUP服务器是否能正常接管服务。"><span class="toc-number">2.4.</span> <span class="toc-text">四.停Master服务器的keepalived服务，查看BAKCUP服务器是否能正常接管服务。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-单纯keepalived-实现高可用"><span class="toc-number">2.5.</span> <span class="toc-text">五.单纯keepalived 实现高可用</span></a></li></ol></li></ol>
 		</div>
 		
@@ -144,15 +144,15 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
   <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LVS"><span class="toc-number">1.</span> <span class="toc-text">LVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keepalvied"><span class="toc-number">2.</span> <span class="toc-text">Keepalvied</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-安装LVS和Keepalvied软件包"><span class="toc-number">2.1.</span> <span class="toc-text">一.安装LVS和Keepalvied软件包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Install-ipvsadm"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.Install ipvsadm</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-安装LVS和Keepalived"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.安装LVS和Keepalived</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-配置LVS实现负载均衡"><span class="toc-number">2.2.</span> <span class="toc-text">二.配置LVS实现负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-lvs-dr"><span class="toc-number">2.2.1.</span> <span class="toc-text">1.lvs-dr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-lvs-realserver"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.lvs-realserver</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-利用Keepalvied結合lvs實現高可用实现负载均衡和和高可用性"><span class="toc-number">2.3.</span> <span class="toc-text">三.利用Keepalvied結合lvs實現高可用实现负载均衡和和高可用性</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-配置在主负载均衡服务器上配置keepalived-conf"><span class="toc-number">2.3.1.</span> <span class="toc-text">1.配置在主负载均衡服务器上配置keepalived.conf</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-在备用调度器上："><span class="toc-number">2.3.2.</span> <span class="toc-text">2.在备用调度器上：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-停Master服务器的keepalived服务，查看BAKCUP服务器是否能正常接管服务。"><span class="toc-number">2.4.</span> <span class="toc-text">四.停Master服务器的keepalived服务，查看BAKCUP服务器是否能正常接管服务。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五-单纯keepalived-实现高可用"><span class="toc-number">2.5.</span> <span class="toc-text">五.单纯keepalived 实现高可用</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -160,7 +160,7 @@ LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚�
   
 
   <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
