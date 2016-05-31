@@ -1,0 +1,468 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>oracle日常运维 | 极客运维</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Keep zhang">
+    
+    <meta name="description" itemprop="description" content="oracle日常运维使用手册">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="极客运维" title="极客运维"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="极客运维">极客运维</a></h1>
+				<h2 class="blog-motto">不懂产品的运维不是好架构师</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:keepzhang.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/31/oracle日常运维/" title="oracle日常运维" itemprop="url">oracle日常运维</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://keepzhang.github.io" title="Keep zhang">Keep zhang</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-05-31T07:58:57.000Z" itemprop="datePublished">2016-05-31</time>
+    更新日期:<time datetime="2016-05-31T08:05:18.000Z" itemprop="dateModified">2016-05-31</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#oracle用户环境变量配置"><span class="toc-number">1.</span> <span class="toc-text">oracle用户环境变量配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#oracle服务启动"><span class="toc-number">2.</span> <span class="toc-text">oracle服务启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#远程连接数据库"><span class="toc-number">2.1.</span> <span class="toc-text">远程连接数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户权限管理"><span class="toc-number">3.</span> <span class="toc-text">用户权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-查看oracle的备份文件存放路径"><span class="toc-number">3.0.1.</span> <span class="toc-text">6 查看oracle的备份文件存放路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQl-gt-select-from-dba-directories"><span class="toc-number">3.1.</span> <span class="toc-text">SQl>select * from dba_directories;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-PL-SQL工具安装配置"><span class="toc-number">3.1.1.</span> <span class="toc-text">7 PL/SQL工具安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#导入中文包："><span class="toc-number">3.1.1.1.</span> <span class="toc-text">导入中文包：</span></a></li></ol></li></ol></li></ol></li></ol>
+		</div>
+		
+		<p>！<a href="http://7ktu2o.com1.z0.glb.clouddn.com/%E5%9D%9A%E6%8C%81.jpg" target="_blank" rel="external"></a></p>
+<h1 id="oracle用户环境变量配置"><a href="#oracle用户环境变量配置" class="headerlink" title="oracle用户环境变量配置"></a>oracle用户环境变量配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">[oracle@tieta ~]$ vim .bash_profile </span><br><span class="line"></span><br><span class="line"># .bash_profile</span><br><span class="line">#umask 022</span><br><span class="line">#TMP=/ora/tmp</span><br><span class="line">#TMPDIR=/ora/tmp</span><br><span class="line">#export TMP TMPDIR</span><br><span class="line">#export ORACLE_SID=shangcheng</span><br><span class="line">ORACLE_BASE=/ora</span><br><span class="line">ORACLE_HOME=/ora/product/11.2.0/dbhome_1</span><br><span class="line">export NLS_LANG=AMERICAN_AMERICA.ZHS16GBK #定义字符集,否则会出现数据库导入导出时中文乱码问题</span><br><span class="line">export NLS_DATE_FORMAT=&quot;yyyy-mm-dd HH24:MI:SS&quot;</span><br><span class="line">SQLPATH=/home/oracle/labs</span><br><span class="line">PATH=$ORACLE_HOME/bin:$PATH</span><br><span class="line">ORACLE_SID=tieta</span><br><span class="line">export ORACLE_BASE ORACLE_HOME SQLPATH PATH ORACLE_SID</span><br><span class="line">export LD_LIBRARY_PATH=$ORACLE_HOME/lib:/usr/lib**</span><br><span class="line"># Get the aliases and functions</span><br><span class="line">if [ -f ~/.bashrc ]; then</span><br><span class="line">        . ~/.bashrc</span><br><span class="line">fi</span><br><span class="line"># User specific environment and startup programs</span><br><span class="line">PATH=$PATH:$HOME/bin</span><br><span class="line">export PATH</span><br></pre></td></tr></table></figure>
+<h1 id="oracle服务启动"><a href="#oracle服务启动" class="headerlink" title="oracle服务启动"></a>oracle服务启动</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@tieta ~]# su - oracle</span><br><span class="line">[oracle@tieta ~]$lsnrctl status #检查监听状态</span><br><span class="line">[oracle@tieta ~]$lsnrctl start  #开启监听</span><br><span class="line">[oracle@tieta ~]$ sqlplus /nolog #不登录</span><br><span class="line"></span><br><span class="line">SQL*Plus: Release 11.2.0.3.0 Production on Wed Mar 23 11:08:55 2016</span><br><span class="line"></span><br><span class="line">Copyright (c) 1982, 2011, Oracle.  All rights reserved.</span><br><span class="line"></span><br><span class="line">SQL&gt; conn /as sysdba; #通过管理员用户登录</span><br><span class="line">Connected.</span><br><span class="line">SQL&gt; startup; #启动数据库</span><br><span class="line">SQL&gt; shutdown immediate; #关闭数据库</span><br></pre></td></tr></table></figure>
+<h2 id="远程连接数据库"><a href="#远程连接数据库" class="headerlink" title="远程连接数据库"></a>远程连接数据库</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#sqlplus /nolog</span><br><span class="line">&gt;conn sys/sys@ip:1521/orainstance as sysdba</span><br></pre></td></tr></table></figure>
+<h1 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">改服务器端字符集，通过ORACLE的SQL PLUS命令窗口改</span><br><span class="line">在SQL*PLUS 中，以DBA登录</span><br><span class="line">conn 用户名 as sysdba</span><br><span class="line">然后执行以下命令</span><br><span class="line">``` </span><br><span class="line">&gt;shutdown immediate; (把database停了)</span><br><span class="line">&gt;startup mount; (把database重开去可更改情況)</span><br><span class="line">&gt;alter system enable restricted session;</span><br><span class="line">&gt;alter system set job_queue_processes=0;</span><br><span class="line">&gt;alter system set aq_tm_processes=0;</span><br><span class="line">&gt;alter database open;</span><br><span class="line">&gt;alter database character set utf8;</span><br><span class="line">OR</span><br><span class="line">&gt;alter database character set internal_use utf8;</span><br><span class="line">&gt;shutdown immediate;</span><br><span class="line">&gt;startup; (重开正常oracle)</span><br></pre></td></tr></table></figure>
+<p>#查看字符集<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select*from v$nls_parameters where parameter in(&apos;NLS_CHARACTERSET&apos;,&apos;NLS_LANGUAGE&apos;);</span><br><span class="line"></span><br><span class="line">PARAMETER           VALUE</span><br><span class="line">----------          ---------</span><br><span class="line">NLS_LANGUAGE        FRENCH</span><br><span class="line">NLS_CHARACTERSET    AL32UTF8</span><br><span class="line">[oracle@tieta ~]echo $NLS_LANG</span><br></pre></td></tr></table></figure></p>
+<p>#创建用户并分配密码<br>SQL&gt;create user ittbank identified by 123456; </p>
+<p>#为用户分配表空间<br>SQL&gt;alter user ittbank default tablespace ittbank; </p>
+<p>#合并上述两条语句<br>SQL&gt;create user ittbank identified by 123456 default tablespace ittbank; #若密码为字母、数字、特殊符号组合，需要加双引号</p>
+<p>#需要通过dba用户对新建用户授权<br>SQL&gt;grant connect,resource,dba to ittbank; #常用的角色有三个connect（7种权限）、dba、resource（在任何表空间建表）</p>
+<p>#删除用户<br>SQL&gt;drop user name cascade; #cascade参数是级联删除该用户所有对象</p>
+<p>#修改密码<br>SQL&gt;password ittbank;   #用户已连接<br>SQL&gt;alter user ittbank identified by newpassword； </p>
+<p>#查看所有用户：<br>SQL&gt;select <em> from dba_users;<br>SQL&gt;select </em> from all_users;<br>SQL&gt;select * from user_users;</p>
+<p>#查看用户的角色<br>SQL&gt;select <em> from dba_role_privs;<br>SQL&gt;select </em> from user_role_privs;<br>SQL&gt;select * from session_privs;</p>
+<p>#查看当前用户的系统权限(直接赋值给用户或角色的系统权限)<br>SQL&gt;select <em> from dba_sys_privs;<br>SQL&gt;select </em> from dba_sys_privs where grantee=’TOM’; #用户名必须大写<br>SQL&gt;select <em> from user_sys_privs; # (查看当前用户所拥有的权限)<br>SQL&gt;select </em> from user_tab_privs;</p>
+<p>#查看用户对象表级权限<br>SQL&gt;select <em> from dba_tab_privs;<br>SQL&gt;select </em> from all_tab_privs;<br>SQL&gt;select * from user_tab_privs;</p>
+<p>#查看所有角色：<br>SQL&gt;select * from dba_roles;</p>
+<p>#查看角色(只能查看登陆用户拥有的角色)所包含的权限<br>sql&gt;select * from role_sys_privs;</p>
+<p>#查看哪些用户有sysdba或sysoper系统权限(查询时需要相应权限)<br>sql&gt;select * from V$PWFILE_USERS;</p>
+<p>#查询用户表<br>SQL&gt;select name from dba_users;</p>
+<p>#修改用户口令<br>SQL&gt;alter user “name” identified by “password”;</p>
+<p>#显示当前用户<br>SQL&gt;show user;</p>
+<p>#看用户没有被锁住<br>SQL&gt;select username,account_status,lock_date from dba_users;<br>ORA-28000：the account is locked</p>
+<p>#设置远程登录尝试次数<br>SQL&gt; alter profile default limit FAILED_LOGIN_ATTEMPTS UNLIMITED;</p>
+<p>#用户远程连接在一定时间内发现较多次数连接失败就会锁住用户，这时候需要对用户解锁，并设置FAILED_LOGIN_ATTEMPTS 参数无限制</p>
+<p>#用户解锁：<br>SQL&gt;alter user itysc account unlock;<br>注意：这种现象一定是有应用服务在不断尝试连接数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 数据表和表空间</span><br></pre></td></tr></table></figure></p>
+<p>#创建表空间：<br>SQL&gt;create tablespace ittbank datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ size 1024m autoextend off; #一般将autoextend off,避免表空间暴增引起磁盘空间不足</p>
+<p>#删除表空间：<br>SQL&gt;drop tablespace ittbank including contents and datafiles;</p>
+<p>#修改表空间大小（注：修改=可以增大，可以减小。）<br>SQL&gt;alter database datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ resize 2048m;</p>
+<p>#增加表空间大小（注：增加=只能增大，不能减少。）<br>SQL&gt;alter tablespace ittbank add datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ size 2048m;</p>
+<p>#查询数据库文件：<br>SQL&gt;select * from dba_data_files;</p>
+<p>#查询当前存在的表空间：<br>SQL&gt;select * from v$tablespace;</p>
+<p>#表空间分配情况：<br>SQL&gt;select tablespace_name,sum(bytes)/1024/1024 from dba_data_files group by tablespace_name;</p>
+<p>#查询表空间剩余空间：<br>SQL&gt;select tablespace_name,sum(bytes)/1024/1024 from dba_free_space group by tablespace_name;</p>
+<p>#查看表结构：<br>SQL&gt;desc table_name;</p>
+<p>#查看用户当前连接数：<br>SQL&gt;select count(*) from sys.v_$session；</p>
+<p>#查看表空间数据文件是否自动扩展<br>SQL&gt;select file_id,file_name,tablespace_name,autoextensible from dba_data_files order by file_id;</p>
+<p>#查看临时表空间数据文件是否自动扩展<br>SQL&gt;select file_id,file_name,tablespace_name,autoextensible from dba_temp_files order by file_id; </p>
+<p>#取消表空间数据文件自动扩展<br>SQL&gt;alter database datafile ‘/ora/oradata/shangcheng/itysc1.dbf’ autoextend off;</p>
+<p>#取消临时表空间数据文件自动扩展<br>SQL&gt;alter database tempfile ‘/ora/oradata/shangcheng/temp01.dbf’ autoextend off;</p>
+<p>#获取当前用户下所有的表<br>SQL&gt;select table_name from user_tables;</p>
+<p>#查询表的备注信息<br>SQL&gt;SELECT TABLE_NAME,TABLE_TYPE,COMMENTS FROM USER_TAB_COMMENTS WHERE TABLE_NAME = ‘MR_DEPT’;</p>
+<p>#禁止外键</p>
+<p>#ORACLE数据库中的外键约束名都在表user_constraints中可以查到。其中constraint_type=’R’表示是外键约束。</p>
+<p>#启用外键约束的命令<br>SQL&gt;alter table table_name enable constraint constraint_name </p>
+<p>#禁用外键约束的命令为<br>SQL&gt;alter table table_name disable constraint constraint_name</p>
+<p>#然后再用SQL查出数据库中所以外键的约束名：<br>SQL&gt;select ‘alter table ‘||table_name||’ enable constraint ‘||constraint_name||’;’ from user_constraints where constraint_type=’R’<br>SQL&gt;select ‘alter table ‘||table_name||’ disable constraint ‘||constraint_name||’;’ from user_constraints where constraint_type=’R’</p>
+<p>#查询表锁情况<br>查询1：select <em> from v$session t1, v$locked_object t2 where t1.sid = t2.SESSION_ID;<br>查询2：<br>SQL&gt;SELECT a.object_id, a.session_id, b.object_name, c.</em>  FROM v$locked_object a, dba_objects b, v$session c  WHERE a.object_id = b.object_id  AND a.SESSION_ID = c.sid(+)  </p>
+<p>#解锁<br>alter system kill session ‘sid, serial#’<br>如上面查出来的一条记录的sid是53, serial#为663,就执行以下的语句<br>SQL&gt;alter system kill session ‘53,663’ </p>
+<p>#查考<a href="http://blog.csdn.net/linghao00/article/details/7939572" target="_blank" rel="external">http://blog.csdn.net/linghao00/article/details/7939572</a></p>
+<p>#ORACLE禁用/启用外键和触发器<br>–启用脚本<br>SET SERVEROUTPUT ON SIZE 1000000<br>BEGIN<br>for c in (select ‘ALTER TABLE ‘||TABLE_NAME||’ ENABLE CONSTRAINT ‘||constraint_name||’ ‘ as v_sql from user_constraints where CONSTRAINT_TYPE=’R’) loop<br>DBMS_OUTPUT.PUT_LINE(C.V_SQL);<br>begin<br> EXECUTE IMMEDIATE c.v_sql;<br> exception when others then<br> dbms_output.put_line(sqlerrm);<br> end;<br>end loop;<br>for c in (select ‘ALTER TABLE ‘||TNAME||’ ENABLE ALL TRIGGERS ‘ AS v_sql from tab where tabtype=’TABLE’) loop<br> dbms_output.put_line(c.v_sql);<br> begin<br> execute immediate c.v_sql;<br>exception when others then<br> dbms_output.put_line(sqlerrm);<br> end;<br>end loop;<br>end;<br>/<br>commit;<br>–禁用脚本<br>SET SERVEROUTPUT ON SIZE 1000000<br>BEGIN<br>for c in (select ‘ALTER TABLE ‘||TABLE_NAME||’ DISABLE CONSTRAINT ‘||constraint_name||’ ‘ as v_sql from user_constraints where CONSTRAINT_TYPE=’R’) loop<br>DBMS_OUTPUT.PUT_LINE(C.V_SQL);<br>begin<br> EXECUTE IMMEDIATE c.v_sql;<br> exception when others then<br> dbms_output.put_line(sqlerrm);<br> end;<br>end loop;<br>for c in (select ‘ALTER TABLE ‘||TNAME||’ DISABLE ALL TRIGGERS ‘ AS v_sql from tab where tabtype=’TABLE’) loop<br> dbms_output.put_line(c.v_sql);<br> begin<br> execute immediate c.v_sql;<br>exception when others then<br> dbms_output.put_line(sqlerrm);<br> end;<br>end loop;<br>end;<br>/<br>commit;</p>
+<p>#temp表空间的 变的太大，如何缩小？<br>(1)、先试试 temp(非本地管理表空间)回收<br>可以将表空间的缺省存储参数pctincrease改为非0。一般将其设为1，如：<br>SQL&gt;alter tablespace temp<br>SQL&gt;default storage(pctincrease 1);<br>这样smon便会将自由范围自动合并。也可以手工合并自由范围：<br>SQL&gt;alter tablespace temp coalesce;<br>(2)、否则就重建表空间： </p>
+<ul>
+<li>#创建中转临时表空间<br>SQL&gt;create temporary tablespace TEMP2 TEMPFILE ‘/ora/oradata/shangcheng/temp02.dbf’ size 512m REUSE AUTOEXTEND ON NEXT 640K MAXSIZE UNLIMITED;</li>
+<li>#改变缺省临时表空间 为刚刚创建的新临时表空间temp2<br>SQL&gt;alter database default temporary tablespace temp2;</li>
+<li>#删除原来临时表空间<br>SQL&gt;drop tablespace temp including contents and datafiles; </li>
+<li>#重新创建临时表空间<br>SQL&gt;create temporary tablespace TEMP TEMPFILE ‘/ora/oradata/shangcheng/temp01.dbf’ size 2000m REUSE AUTOEXTEND ON NEXT 640K MAXSIZE UNLIMITED;</li>
+<li>#重置缺省临时表空间为新建的temp表空间<br>SQL&gt;alter database default temporary tablespace temp;</li>
+<li>#删除中转用临时表空间<br>SQL&gt;drop tablespace TEMP2 including contents and datafiles;</li>
+<li>#重新指定用户表空间为重建的临时表空间<br>SQL&gt;alter user roll temporary tablespace temp; </li>
+</ul>
+<p>#Oracle删除当前用户下所有的表的方法</p>
+<ul>
+<li>#如果有删除用户的权限，则可以：<br>SQL&gt;drop user user_name cascade; #加了cascade就可以把用户连带的数据全部删掉。</li>
+<li>#如果没有删除用户的权限，则可以执行：<br>SQL&gt;select ‘Drop table ‘||table_name||’;’ from all_tables<br>where owner=’要删除的用户名(注意要大写)’;<br>SQL&gt;select ‘drop table ‘||table_name||’;’ from cat where table_type=’TABLE’; #通过列出的sql语句，对表进行删除<br>SQL&gt;select ‘truncate table  ‘ || table_name from user_tables;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">### 5、数据库导入导出</span><br><span class="line">---</span><br><span class="line">&gt; #导出额导入实用程序的特点有：</span><br><span class="line">&gt;</span><br><span class="line">&gt;1.可以按时间保存表结构和数据</span><br><span class="line">&gt;</span><br><span class="line">&gt;2.允许导出指定的表，并重新导入到新的数据库中</span><br><span class="line">&gt;</span><br><span class="line">&gt;3.可以吧数据库迁移到另外一台异构服务器上 </span><br><span class="line">&gt;</span><br><span class="line">&gt;4.在两个不同版本的Oracle数据库之间传输数据 </span><br><span class="line">&gt;</span><br><span class="line">&gt;5.在联机状态下进行备份和恢复 </span><br><span class="line">&gt;</span><br><span class="line">&gt;6.可以重新组织表的存储结构，减少链接及磁盘碎片 </span><br><span class="line"></span><br><span class="line">&gt; #调用导入导出的三种方法：</span><br><span class="line">&gt;</span><br><span class="line">&gt;1、在命令执行程序的参数和参数值 </span><br><span class="line">&gt;</span><br><span class="line">&gt;2、已交互的方式提示用户逐个输入参数的值</span><br><span class="line">&gt;</span><br><span class="line">&gt;3、允许用户将运行参数和参数值存储在参数文件中，以便重复使用参数</span><br><span class="line">&gt;</span><br><span class="line">&gt; #导入导出数据库对象的四种模式：完全数据库、表、用户、表空间</span><br><span class="line">&gt; </span><br><span class="line">&gt; 1、导入导出整个数据库的所有对象 (整库)</span><br><span class="line">&gt;</span><br><span class="line">&gt; 2、导入导出一个或多个指定的表或表空间 </span><br><span class="line">&gt;</span><br><span class="line">&gt; 3、导入导出一个用户模式中的所有对象 </span><br><span class="line">&gt;</span><br><span class="line">&gt; 4、导入导出一个或多个指定的表空间中的所有对象 </span><br><span class="line">---</span><br><span class="line">####  (1)数据导出</span><br><span class="line">---</span><br><span class="line">##### **导出使用程序有以下常用的命令参数**</span><br><span class="line">&gt; 参数                                说明</span><br><span class="line">&gt;</span><br><span class="line">&gt; USERID           确定执行导出实用程序的用户名和口令 </span><br><span class="line">&gt;</span><br><span class="line">&gt;BUFFER          确定导出数据时所使用的缓冲区大小，其大小用字节表示 </span><br><span class="line">&gt;</span><br><span class="line">&gt;FILE                  指定导出的二进制文件名称，默认的扩展名是.dmp </span><br><span class="line">&gt;</span><br><span class="line">&gt;FULL                指定是否以全部数据库方式导出，只有授权用户才可使用此参数 </span><br><span class="line">&gt;</span><br><span class="line">&gt;OWNER           要导出的数据库用户列表 </span><br><span class="line">&gt;</span><br><span class="line">&gt;HELP                指定是否显示帮助消息和参数说明 </span><br><span class="line">&gt;</span><br><span class="line">&gt;ROWS              确定是否要导出表中的数据 </span><br><span class="line">&gt;</span><br><span class="line">&gt;TABLES           按表方式导出时，指定需导出的表和分区的名称 </span><br><span class="line">&gt;</span><br><span class="line">&gt;PARFILE          指定传递给导出实用程序的参数文件名 </span><br><span class="line">&gt;</span><br><span class="line">&gt;TABLESPACES      按表空间方式导出时，指定要导出的表空间名 </span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>[root@tieta ~]# su - oracle</p>
+<p>#将shangcheng数据库全部导出<br>[oracle@tieta ~]$ exp system/sys!123@shangcheng file=/oracle/dbbak/wqtdb1.dmp full=y</p>
+<p>#将数据库中system用户与sys用户的表导出<br>[oracle@tieta ~]$ exp system/sys!123@shangcheng file=/oracle/dbbak/wqtdb2.dmp owner=(system,sys)</p>
+<p>#将数据库中的表inner_notify、notify_staff_relat导出<br>[oracle@tieta ~]$ exp system/sys!123@shangcheng file=/oracle/dbbak/wqtdb2.dmp tables=(inner_notify,notify_staff_relat)</p>
+<p>#按表空间方式导出数据<br>[oracle@tieta ~]$exp system/oracle@oracle tablespaces=(gmd) file=d:/3.dmp</p>
+<p>#使用参数文件导出数据<br>[oracle@tieta ~]$exp system/oracle@oracle parfile=’d:/parameters.txt’ </p>
+<p>#将数据库中的表table1中的字段filed1以”00”打头的数据导出<br>[oracle@tieta ~]$ exp system/sys!123@shangcheng file=/oracle/dbbak/wqtdb2.dmp tables=(table1) query=/“ where filed1 like ‘00%’/“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">#### (2)数据导入</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">##### **导入使用程序有以下常用的命令参数**</span><br><span class="line">&gt;参数                              说明</span><br><span class="line">&gt;</span><br><span class="line">&gt;USERID             指定执行导入的用户名和密码 </span><br><span class="line">&gt;</span><br><span class="line">&gt;BUFFER            指定用来读取数据的缓冲区大小，以字节为单位 </span><br><span class="line">&gt;</span><br><span class="line">&gt;COMMIT             指定是否在每个数组（其大小由BUFFER参数设置）插入后进行提交 </span><br><span class="line">&gt;</span><br><span class="line">&gt;FILE                    指定要导入的二进制文件名 </span><br><span class="line">&gt;</span><br><span class="line">&gt;FROMUSER      指定要从导出转储文件中导入的用户模式 </span><br><span class="line">&gt;</span><br><span class="line">&gt;TOUSER            指定要将对象导入的用户名。FROMUSER与TOUSER可以不同 </span><br><span class="line">&gt;</span><br><span class="line">&gt;FULL                   指定是否要导入整个导出转储文件 </span><br><span class="line">&gt;</span><br><span class="line">&gt;TABLES              指定要导入的表的列表 </span><br><span class="line">&gt;</span><br><span class="line">&gt;ROWS                 指定是否要导入表中的行 </span><br><span class="line">&gt;</span><br><span class="line">&gt;PARFILE             指定传递给导入实用程序的参数文件名，此文件可以包含这里列出的所有参数 </span><br><span class="line">&gt;</span><br><span class="line">&gt;IGNORE              导入时是否忽略遇到的错误，默认为N </span><br><span class="line">&gt;</span><br><span class="line">&gt;TABLESPACES       按表空间方式导入，列出要导入的表空间名 </span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">先对用户下表执行删除操作，然后再通过imp导入（参考数据表和表空间中删除当前用户下表部分），或者导入时对已存在表提示进行忽略</span><br></pre></td></tr></table></figure></p>
+<p>[oracle@tieta ~]$imp system/manager@TEST  file=/oracle/dbbak/wqtdb2.dmp<br>[oracle@tieta ~]$imp aichannel/aichannel@HUST full=y  file=/oracle/dbbak/wqtdb2.dmp ignore=y</p>
+<p>#将/oracle/dbbak/wqtdb2.dmp中的表table1 导入<br>[oracle@tieta ~]$imp system/manager@TEST file=/oracle/dbbak/wqtdb2.dmp  tables=(table1)</p>
+<p>#使用参数文件导入数据<br>[oracle@tieta ~]$imp system/oracle@oracle parfile=’d:/paramenters.txt’<br>```</p>
+<h3 id="6-查看oracle的备份文件存放路径"><a href="#6-查看oracle的备份文件存放路径" class="headerlink" title="6 查看oracle的备份文件存放路径"></a>6 查看oracle的备份文件存放路径</h3><hr>
+<blockquote>
+<p>如果是Oracle 11g的话，用Sys用户登录 执行</p>
+<h2 id="SQl-gt-select-from-dba-directories"><a href="#SQl-gt-select-from-dba-directories" class="headerlink" title="SQl&gt;select * from dba_directories;"></a>SQl&gt;select * from dba_directories;</h2></blockquote>
+<h3 id="7-PL-SQL工具安装配置"><a href="#7-PL-SQL工具安装配置" class="headerlink" title="7 PL/SQL工具安装配置"></a>7 PL/SQL工具安装配置</h3><hr>
+<p>配置方法如下：<br>一、将下载的Basic版压缩包解压至某目录下（该目录可依个人喜好自行定义，放在 D:\Program Files (x86)\instantclient_11_2 中）；</p>
+<p>二、配置环境变量：<br>（打开环境变量配置界面操作：我的电脑—属性—高级—环境变量，在系统变量部分新建或编辑即可。win7即以上操作系统为：计算机——属性——高级系统设置——环境变量）<br>1) 变量名：ORACLE_HOME(如本机没有服务器，经测试可省略)<br>  变量值：D:\Program Files (x86)\instantclient_11_2<br>2) 变量名：TNS_ADMIN<br>  变量值：D:\Program Files (x86)\instantclient_11_2\<br>  说明：该配置项指定tnsnames.ora文件的存放路径。建议该值最后的’\’符号不要略去，不然可能会影响到PLSQL，测试在配置时，缺少了‘\’，结果PLSQL无法读取到该文件中的数据。但貌似不会影响sqlplus的使用。<br>3) 变量名：NLS_LANG<br>  变量值：SIMPLIFIED CHINESE_CHINA.ZHS16GBK<br>  ( AMERICAN_AMERICA.AL32UTF8  )<br>  说明：该值定义所连接的数据库使用的编码，其它类型可自己到服务器看一下或网上查找一下。</p>
+<p>4) 修改Path变量，在后面添加 D:\Program Files (x86)\instantclient_11_2</p>
+<p>三、 在你定义的TNS_ADMIN（该变量名的值）目录中，复制文件名为tnsnames.ora,并在文件中增加自己的数据库别名配置，<br>示例如下：</p>
+<p>ORACLR_CONNECTION_DATA =<br>  (DESCRIPTION =<br>    (ADDRESS_LIST =<br>      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))<br>    )<br>    (CONNECT_DATA =<br>      (SID = CLRExtProc)<br>      (PRESENTATION = RO)<br>    )<br>  )<br>TEST =<br>  (DESCRIPTION =<br>    (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.2.175)(PORT = 1521))<br>    (CONNECT_DATA =<br>      (SERVER = DEDICATED)<br>      (SERVICE_NAME = orcl)<br>    )<br>  )  </p>
+<p>主要修改第一个=前面的别名，Host为IP地址, SERVICE_NAME为数据库服务器的实例名。</p>
+<p>四、安装和使用PLSQL。</p>
+<p>进入PLSQL Developer，选择tools-&gt;preferences-&gt;connection</p>
+<p>Oracle Home</p>
+<p>E:\oracleClient\instantclient_11_2</p>
+<p>OCI library</p>
+<p>E:\oracleClient\instantclient_11_2\oci.dll</p>
+<p>修改完毕后保存并重启PLSQL Developer就可以使用该工具了。</p>
+<h4 id="导入中文包："><a href="#导入中文包：" class="headerlink" title="导入中文包："></a>导入中文包：</h4><p>菜单-&gt;Tools -&gt;preferences-&gt;User Interface -&gt; Appearance -&gt; Language 选择 Chinese.lang</p>
+<p>卸载方法：<br>在系统变量中，删除 ORACLE_HOME, TNS_ADMIN, NLS_LANG 三个变量,修改path变量，去掉 D:\Program Files (x86)\instantclient_11_2 目录。</p>
+<hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/oracle/">oracle</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/database/">database</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://keepzhang.github.io/2016/05/31/oracle日常运维/" data-title="oracle日常运维 | 极客运维" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/27/LVS+Keepalived+nginx+单纯keepalived高可用/"  title="LVS+Keepalived+nginx高可用">
+ <strong>NEXT:</strong><br/> 
+ <span>LVS+Keepalived+nginx高可用
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#oracle用户环境变量配置"><span class="toc-number">1.</span> <span class="toc-text">oracle用户环境变量配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#oracle服务启动"><span class="toc-number">2.</span> <span class="toc-text">oracle服务启动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#远程连接数据库"><span class="toc-number">2.1.</span> <span class="toc-text">远程连接数据库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户权限管理"><span class="toc-number">3.</span> <span class="toc-text">用户权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-查看oracle的备份文件存放路径"><span class="toc-number">3.0.1.</span> <span class="toc-text">6 查看oracle的备份文件存放路径</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQl-gt-select-from-dba-directories"><span class="toc-number">3.1.</span> <span class="toc-text">SQl>select * from dba_directories;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-PL-SQL工具安装配置"><span class="toc-number">3.1.1.</span> <span class="toc-text">7 PL/SQL工具安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#导入中文包："><span class="toc-number">3.1.1.1.</span> <span class="toc-text">导入中文包：</span></a></li></ol></li></ol></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/HA/" title="HA">HA<sup>2</sup></a></li>
+		
+			<li><a href="/categories/Middleware/" title="Middleware">Middleware<sup>1</sup></a></li>
+		
+			<li><a href="/categories/database/" title="database">database<sup>1</sup></a></li>
+		
+			<li><a href="/categories/programming-language/" title="programming language">programming language<sup>2</sup></a></li>
+		
+			<li><a href="/categories/吐槽/" title="吐槽">吐槽<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/LVS/" title="LVS">LVS<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Python/" title="Python">Python<sup>2</sup></a></li>
+		
+			<li><a href="/tags/keepalived/" title="keepalived">keepalived<sup>2</sup></a></li>
+		
+			<li><a href="/tags/mysql-Replication/" title="mysql_Replication">mysql_Replication<sup>1</sup></a></li>
+		
+			<li><a href="/tags/nginx/" title="nginx">nginx<sup>2</sup></a></li>
+		
+			<li><a href="/tags/oracle/" title="oracle">oracle<sup>1</sup></a></li>
+		
+			<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hi,i&#39;m keepzhang,this&#39;s my blog. <br/>
+			welcome  you to access my geek home!!!</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/keepzhang" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://keepzhang.github.io" target="_blank" title="Keep zhang">Keep zhang</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"keepzhang"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+  </body>
+</html>
