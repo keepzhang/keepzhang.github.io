@@ -4,12 +4,48 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>极客人生 | 极客运维</title>
+    <title>基于heartbeat的mysql高可用 | 极客运维</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Keep zhang">
     
-    <meta name="description" content="“极客”一词，来自于美国俚语“geek”的音译，一般理解为性格古怪的人。很长时间在西方文化里geek的意思一直偏向鄙意，在PC革命初期，Geek开始衍生为一般人对电脑黑客的贬称，他们具有极高的技术能力，对计算机与网络的痴迷有时会达到不正常的状态。但如今，随着互联网的日益普及，那些一直被视为怪异者的边">
+    <meta name="description" content="环境说明
+
+
+node
+NIC
+IP
+
+
+
+
+node0
+eth0
+192.168.2.241
+
+
+node0
+eth1
+10.1.1.11
+
+
+node1
+eth0
+192.168.2.242
+
+
+node1
+eth1
+10.1.1.11
+
+
+
+VIP
+192.168.2.243
+
+
+
+下载hea">
     
     
     
@@ -65,15 +101,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/03/24/极客人生/" title="极客人生" itemprop="url">极客人生</a>
+      <a href="/2016/05/31/基于heartbeat的mysql高可用/" title="基于heartbeat的mysql高可用" itemprop="url">基于heartbeat的mysql高可用</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://keepzhang.github.io" title="Keep zhang">Keep zhang</a>
     </p>
   <p class="article-time">
-    <time datetime="2016-03-24T13:29:47.000Z" itemprop="datePublished">2016-03-24</time>
-    更新日期:<time datetime="2016-05-31T07:31:25.000Z" itemprop="dateModified">2016-05-31</time>
+    <time datetime="2016-05-31T08:29:42.000Z" itemprop="datePublished">2016-05-31</time>
+    更新日期:<time datetime="2016-05-31T08:50:09.000Z" itemprop="dateModified">2016-05-31</time>
     
   </p>
 </header>
@@ -82,33 +118,75 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境说明"><span class="toc-number">1.</span> <span class="toc-text">环境说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装heartbeat"><span class="toc-number">1.1.</span> <span class="toc-text">安装heartbeat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置"><span class="toc-number">1.2.</span> <span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li></ol>
 		</div>
 		
-		<blockquote>
-<p>“极客”一词，来自于美国俚语“geek”的音译，一般理解为性格古怪的人。很长时间在西方文化里geek的意思一直偏向鄙意，在PC革命初期，Geek开始衍生为一般人对电脑黑客的贬称，他们具有极高的技术能力，对计算机与网络的痴迷有时会达到不正常的状态。但如今，随着互联网的日益普及，那些一直被视为怪异者的边缘人物，突然被历史之手推向舞台的中央，转变成为社会主流。Geek们自己却对“局外人”身份感到骄傲，像宗教一样强烈信仰科技的力量。</p>
-</blockquote>
-<p><img src="http://7ktu2o.com1.z0.glb.clouddn.com/%E7%AE%80%E5%8D%951.jpg" alt="this is life"></p>
+		<p><img src="http://7ktu2o.com1.z0.glb.clouddn.com/%E5%AD%98%E6%B4%BB.jpg" alt=""></p>
+<h1 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h1><table>
+<thead>
+<tr>
+<th>node</th>
+<th style="text-align:center">NIC</th>
+<th>IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>node0</td>
+<td style="text-align:center">eth0</td>
+<td>192.168.2.241</td>
+</tr>
+<tr>
+<td>node0</td>
+<td style="text-align:center">eth1</td>
+<td>10.1.1.11</td>
+</tr>
+<tr>
+<td>node1</td>
+<td style="text-align:center">eth0</td>
+<td>192.168.2.242</td>
+</tr>
+<tr>
+<td>node1</td>
+<td style="text-align:center">eth1</td>
+<td>10.1.1.11</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:center">VIP</td>
+<td>192.168.2.243</td>
+</tr>
+</tbody>
+</table>
+<p>下载heartbeat<a href="http://down.51cto.com/data/2170182" target="_blank" rel="external">http://down.51cto.com/data/2170182</a></p>
+<h2 id="安装heartbeat"><a href="#安装heartbeat" class="headerlink" title="安装heartbeat"></a>安装heartbeat</h2><p>[root@node1 worktmp]# ls<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">heartbeat-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-debuginfo-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-devel-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-gui-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-ldirectord-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-pils-2.1.4-12.el6.x86_64.rpm </span><br><span class="line">heartbeat-stonith-2.1.4-12.el6.x86_64.rpm</span><br></pre></td></tr></table></figure></p>
+<p>[root@node1 worktmp]# rpm -ivh heartbeat-*<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">error: Failed dependencies: pygtk2-libglade is needed by heartbeat-gui-2.1.4-12.el6.x86_64 </span><br><span class="line">ipvsadm is needed by heartbeat-ldirectord-2.1.4-12.el6.x86_64 perl(Mail::Send) is needed by heartbeat-ldirectord-2.1.4-12.el6.x86_64</span><br></pre></td></tr></table></figure></p>
+<p>[root@node1 worktmp]# yum install pygtk2-libglade ipvsadm perl-MailTools<br>[root@node1 ha.d]# cp /usr/share/doc/heartbeat-2.1.4/{authkeys,ha.cf} /etc/ha.d/<br>[root@node1 ~]# chmod 600 /etc/ha.d/authkeys<br>[root@node1 ~]# openssl rand -hex 8 4d8fd6cb49d2047b<br>[root@node1 ~]# vim /etc/ha.d/authkeys<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auth 2</span><br><span class="line">2 sha1 4d8fd6cb49d2047b</span><br></pre></td></tr></table></figure></p>
+<h2 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h2><p>[root@node1 ha.d]# grep -v “#” /etc/ha.d/ha.cf |grep -v “^$” warntime 10<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#指定心跳延迟的时间为10秒。当10秒钟备用节点不能接收到主节点的心跳信 号时，就会往日志中写入一个警告日志，但此时不会切换服务</span><br><span class="line">initdead 120 #在某些系统上，系统启动或重启之后需要经过一段时间网络才能正常工作， 该选项用于解决这种情况产生的时间间隔，取值至少为deadtime的两倍</span><br><span class="line">#udpport 694</span><br><span class="line">#设置广播通信使用的端口，694位默认使用的端口号</span><br><span class="line">#baud 19200 #设置串行通信的波特率</span><br><span class="line">ucast eth1 10.1.1.2 #采用网卡eth1的udp单播来组织心跳，后面跟的IP地址应为双机对&gt; 方的IP地址 #mcast eth0 255.0.0.1 694 1 0 #采用网卡eth0</span><br><span class="line">auto_failback off</span><br><span class="line">node node1</span><br><span class="line">node node2</span><br><span class="line">ping 192.168.32.1</span><br><span class="line">crm on</span><br></pre></td></tr></table></figure></p>
+<p>将配置文件传给备用节点<br>[root@node1 ha.d]# scp {ha.cf,authkeys} node2:/etc/ha.d/ </p>
+<p>#修改ha.cf中单播地址为node1网卡eth1的IP<br>启用crm图形界面时需要登录密码，在安装heartbeat-gui时会自动创建一个名为hacluster的用户，在任一节点上设置hacluster的密码即可<br>[root@node1 ha.d]# passwd hacluster<br>启动heartbeat<br>[root@node1 ha.d]# service heartbeat start<br>[root@node2 ha.d]# service heartbeat start</p>
+<h2 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h2><p>[root@node1 ha.d]# crm_mon<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Refresh in 15s...</span><br><span class="line">============ Last updated: Mon Apr 25 21:55:58 2016 Current DC: node1 (277dc78d-577a-4551-9b25-a3e9766cbdbd) 2 Nodes configured. 0 Resources configured. ============</span><br><span class="line">Node: node1 (277dc78d-577a-4551-9b25-a3e9766cbdbd): online</span><br><span class="line">Node: node2 (d13ad22c-583e-475a-9a99-c41531594e6f): online</span><br></pre></td></tr></table></figure></p>
+<p>启动gui界面<br>[root@node1 ~]# hb_gui</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/生活/">生活</a>
+  <span></span> <a href="/tags/heartbeat/">heartbeat</a><a href="/tags/mysql/">mysql</a>
   </div>
 
 
 <div class="article-categories">
   <span></span>
-  <a class="article-category-link" href="/categories/吐槽/">吐槽</a>
+  <a class="article-category-link" href="/categories/HA/">HA</a>
 </div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://keepzhang.github.io/2016/03/24/极客人生/" data-title="极客人生 | 极客运维" data-tsina="null" class="share clearfix">
+  <div data-url="http://keepzhang.github.io/2016/05/31/基于heartbeat的mysql高可用/" data-title="基于heartbeat的mysql高可用 | 极客运维" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -117,14 +195,14 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/03/29/python手记/" title="python手记">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  python手记</span>
+
+<div class="next">
+<a href="/2016/05/31/oracle日常运维/"  title="oracle日常运维">
+ <strong>NEXT:</strong><br/> 
+ <span>oracle日常运维
+</span>
 </a>
 </div>
-
 
 </nav>
 
@@ -138,7 +216,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境说明"><span class="toc-number">1.</span> <span class="toc-text">环境说明</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装heartbeat"><span class="toc-number">1.1.</span> <span class="toc-text">安装heartbeat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置"><span class="toc-number">1.2.</span> <span class="toc-text">修改配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
