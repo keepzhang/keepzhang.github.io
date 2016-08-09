@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-05-31T07:58:57.000Z" itemprop="datePublished">2016-05-31</time>
-    更新日期:<time datetime="2016-08-09T02:35:03.000Z" itemprop="dateModified">2016-08-09</time>
+    更新日期:<time datetime="2016-08-09T02:36:07.000Z" itemprop="dateModified">2016-08-09</time>
     
   </p>
 </header>
@@ -101,7 +101,9 @@
 <p>#修改密码<br>SQL&gt;password ittbank;   #用户已连接<br>SQL&gt;alter user ittbank identified by newpassword； </p>
 <p>#查看所有用户：<br>SQL&gt;select <em> from dba_users;<br>SQL&gt;select </em> from all_users;<br>SQL&gt;select * from user_users;</p>
 <p>#查看用户的角色<br>SQL&gt;select <em> from dba_role_privs;<br>SQL&gt;select </em> from user_role_privs;<br>SQL&gt;select * from session_privs;</p>
-<p>#查看当前用户的系统权限(直接赋值给用户或角色的系统权限)<br>SQL&gt;select <em> from dba_sys_privs;<br>SQL&gt;select </em> from dba_sys_privs where grantee=’TOM’; #用户名必须大写<br>SQL&gt;select <em> from user_sys_privs; # (查看当前用户所拥有的权限)<br>SQL&gt;select </em> from user_tab_privs;<br>SQL&gt;select <em> from dba_sys_privs;<br>SQL&gt;select </em> from dba_sys_privs where grantee=’TOM’;</p>
+<p>#查看当前用户的系统权限(直接赋值给用户或角色的系统权限)<br>SQL&gt;select <em> from dba_sys_privs;<br>SQL&gt;select </em> from dba_sys_privs where grantee=’TOM’; #用户名必须大写<br>SQL&gt;select <em> from user_sys_privs; # (查看当前用户所拥有的权限)<br>SQL&gt;select </em> from user_tab_privs;</p>
+<p>#SQL&gt;select * from dba_sys_privs;</p>
+<p>#SQL&gt;select * from dba_sys_privs where grantee=’TOM’;</p>
 <p>#查看用户对象表级权限<br>SQL&gt;select <em> from dba_tab_privs;<br>SQL&gt;select </em> from all_tab_privs;<br>SQL&gt;select * from user_tab_privs;</p>
 <p>#查看所有角色：<br>SQL&gt;select * from dba_roles;</p>
 <p>#查看角色(只能查看登陆用户拥有的角色)所包含的权限<br>sql&gt;select * from role_sys_privs;</p>
