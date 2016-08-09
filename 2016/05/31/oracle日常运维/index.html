@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2016-05-31T07:58:57.000Z" itemprop="datePublished">2016-05-31</time>
-    更新日期:<time datetime="2016-08-09T02:49:48.000Z" itemprop="dateModified">2016-08-09</time>
+    更新日期:<time datetime="2016-08-09T02:55:09.000Z" itemprop="dateModified">2016-08-09</time>
     
   </p>
 </header>
@@ -93,33 +93,33 @@
 <p>#查看字符集</p>
 <p>SQL&gt;select*from v$nls_parameters where parameter in(‘NLS_CHARACTERSET’,’NLS_LANGUAGE’);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PARAMETER           VALUE</span><br><span class="line">----------          ---------</span><br><span class="line">NLS_LANGUAGE        FRENCH</span><br><span class="line">NLS_CHARACTERSET    AL32UTF8</span><br></pre></td></tr></table></figure></p>
 <p>[oracle@tieta ~]echo $NLS_LANG</p>
-<p>#创建用户并分配密码<br>SQL&gt;create user ittbank identified by 123456; </p>
-<p>#为用户分配表空间<br>SQL&gt;alter user ittbank default tablespace ittbank; </p>
-<p>#合并上述两条语句<br>SQL&gt;create user ittbank identified by 123456 default tablespace ittbank; #若密码为字母、数字、特殊符号组合，需要加双引号</p>
-<p>#需要通过dba用户对新建用户授权<br>SQL&gt;grant connect,resource,dba to ittbank; #常用的角色有三个connect（7种权限）、dba、resource（在任何表空间建表）</p>
-<p>#删除用户<br>SQL&gt;drop user name cascade; #cascade参数是级联删除该用户所有对象</p>
-<p>#修改密码<br>SQL&gt;password ittbank;   #用户已连接<br>SQL&gt;alter user ittbank identified by newpassword； </p>
+<p>#创建用户并分配密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;create user ittbank identified by 123456;</span><br></pre></td></tr></table></figure></p>
+<p>#为用户分配表空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter user ittbank default tablespace ittbank;</span><br></pre></td></tr></table></figure></p>
+<p>#合并上述两条语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;create user ittbank identified by 123456 default tablespace ittbank; #若密码为字母、数字、特殊符号组合，需要加双引号</span><br></pre></td></tr></table></figure></p>
+<p>#需要通过dba用户对新建用户授权<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;grant connect,resource,dba to ittbank; #常用的角色有三个connect（7种权限）、dba、resource（在任何表空间建表）</span><br></pre></td></tr></table></figure></p>
+<p>#删除用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;drop user name cascade; #cascade参数是级联删除该用户所有对象</span><br></pre></td></tr></table></figure></p>
+<p>#修改密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;password ittbank;   #用户已连接</span><br><span class="line">SQL&gt;alter user ittbank identified by newpassword；</span><br></pre></td></tr></table></figure></p>
 <p>#查看所有用户：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_users;</span><br><span class="line">SQL&gt;select * from all_users;</span><br><span class="line">SQL&gt;select * from user_users;</span><br></pre></td></tr></table></figure></p>
 <p>#查看用户的角色<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_role_privs;</span><br><span class="line">SQL&gt;select * from user_role_privs;</span><br><span class="line">SQL&gt;select * from session_privs;</span><br></pre></td></tr></table></figure></p>
 <p>#查看当前用户的系统权限(直接赋值给用户或角色的系统权限)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_sys_privs; </span><br><span class="line">SQL&gt;select * from dba_sys_privs where grantee=&apos;TOM&apos;; #用户名必须大写</span><br><span class="line">SQL&gt;select * from user_sys_privs; # (查看当前用户所拥有的权限)</span><br><span class="line">SQL&gt;select * from user_tab_privs;</span><br></pre></td></tr></table></figure></p>
-<p>#查看用户对象表级权限<br>SQL&gt;select <em> from dba_tab_privs;<br>SQL&gt;select </em> from all_tab_privs;<br>SQL&gt;select * from user_tab_privs;</p>
-<p>#查看所有角色：<br>SQL&gt;select * from dba_roles;</p>
-<p>#查看角色(只能查看登陆用户拥有的角色)所包含的权限<br>sql&gt;select * from role_sys_privs;</p>
-<p>#查看哪些用户有sysdba或sysoper系统权限(查询时需要相应权限)<br>sql&gt;select * from V$PWFILE_USERS;</p>
-<p>#查询用户表<br>SQL&gt;select name from dba_users;</p>
-<p>#修改用户口令<br>SQL&gt;alter user “name” identified by “password”;</p>
-<p>#显示当前用户<br>SQL&gt;show user;</p>
-<p>#看用户没有被锁住<br>SQL&gt;select username,account_status,lock_date from dba_users;<br>ORA-28000：the account is locked</p>
-<p>#设置远程登录尝试次数<br>SQL&gt; alter profile default limit FAILED_LOGIN_ATTEMPTS UNLIMITED;</p>
+<p>#查看用户对象表级权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_tab_privs;</span><br><span class="line">SQL&gt;select * from all_tab_privs;</span><br><span class="line">SQL&gt;select * from user_tab_privs;</span><br></pre></td></tr></table></figure></p>
+<p>#查看所有角色：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_roles;</span><br></pre></td></tr></table></figure></p>
+<p>#查看角色(只能查看登陆用户拥有的角色)所包含的权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql&gt;select * from role_sys_privs;</span><br></pre></td></tr></table></figure></p>
+<p>#查看哪些用户有sysdba或sysoper系统权限(查询时需要相应权限)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql&gt;select * from V$PWFILE_USERS;</span><br></pre></td></tr></table></figure></p>
+<p>#查询用户表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select name from dba_users;</span><br></pre></td></tr></table></figure></p>
+<p>#修改用户口令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter user &quot;name&quot; identified by &quot;password&quot;;</span><br></pre></td></tr></table></figure></p>
+<p>#显示当前用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;show user;</span><br></pre></td></tr></table></figure></p>
+<p>#看用户没有被锁住<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select username,account_status,lock_date from dba_users;</span><br><span class="line">ORA-28000：the account is locked</span><br></pre></td></tr></table></figure></p>
+<p>#设置远程登录尝试次数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; alter profile default limit FAILED_LOGIN_ATTEMPTS UNLIMITED;</span><br></pre></td></tr></table></figure></p>
 <p>#用户远程连接在一定时间内发现较多次数连接失败就会锁住用户，这时候需要对用户解锁，并设置FAILED_LOGIN_ATTEMPTS 参数无限制</p>
-<p>#用户解锁：<br>SQL&gt;alter user itysc account unlock;<br>注意：这种现象一定是有应用服务在不断尝试连接数据库</p>
-<h1 id="数据表和表空间"><a href="#数据表和表空间" class="headerlink" title="数据表和表空间"></a>数据表和表空间</h1><p>#创建表空间：<br>SQL&gt;create tablespace ittbank datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ size 1024m autoextend off; #一般将autoextend off,避免表空间暴增引起磁盘空间不足</p>
-<p>#删除表空间：<br>SQL&gt;drop tablespace ittbank including contents and datafiles;</p>
-<p>#修改表空间大小（注：修改=可以增大，可以减小。）<br>SQL&gt;alter database datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ resize 2048m;</p>
-<p>#增加表空间大小（注：增加=只能增大，不能减少。）<br>SQL&gt;alter tablespace ittbank add datafile ‘/u01/app/oracle/oradata/ORCL/ittbank1.dbf’ size 2048m;</p>
-<p>#查询数据库文件：<br>SQL&gt;select * from dba_data_files;</p>
-<p>#查询当前存在的表空间：<br>SQL&gt;select * from v$tablespace;</p>
-<p>#表空间分配情况：<br>SQL&gt;select tablespace_name,sum(bytes)/1024/1024 from dba_data_files group by tablespace_name;</p>
+<p>#用户解锁：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter user itysc account unlock;</span><br><span class="line">注意：这种现象一定是有应用服务在不断尝试连接数据库</span><br></pre></td></tr></table></figure></p>
+<h1 id="数据表和表空间"><a href="#数据表和表空间" class="headerlink" title="数据表和表空间"></a>数据表和表空间</h1><p>#创建表空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;create tablespace ittbank datafile &apos;/u01/app/oracle/oradata/ORCL/ittbank1.dbf&apos; size 1024m autoextend off; #一般将autoextend off,避免表空间暴增引起磁盘空间不足</span><br></pre></td></tr></table></figure></p>
+<p>#删除表空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;drop tablespace ittbank including contents and datafiles;</span><br></pre></td></tr></table></figure></p>
+<p>#修改表空间大小（注：修改=可以增大，可以减小。）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter database datafile &apos;/u01/app/oracle/oradata/ORCL/ittbank1.dbf&apos; resize 2048m;</span><br></pre></td></tr></table></figure></p>
+<p>#增加表空间大小（注：增加=只能增大，不能减少。）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;alter tablespace ittbank add datafile &apos;/u01/app/oracle/oradata/ORCL/ittbank1.dbf&apos; size 2048m;</span><br></pre></td></tr></table></figure></p>
+<p>#查询数据库文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from dba_data_files;</span><br></pre></td></tr></table></figure></p>
+<p>#查询当前存在的表空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select * from v$tablespace;</span><br></pre></td></tr></table></figure></p>
+<p>#表空间分配情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt;select tablespace_name,sum(bytes)/1024/1024 from dba_data_files group by tablespace_name;</span><br></pre></td></tr></table></figure></p>
 <p>#查询表空间剩余空间：<br>SQL&gt;select tablespace_name,sum(bytes)/1024/1024 from dba_free_space group by tablespace_name;</p>
 <p>#查看表结构：<br>SQL&gt;desc table_name;</p>
 <p>#查看用户当前连接数：<br>SQL&gt;select count(*) from sys.v_$session；</p>
