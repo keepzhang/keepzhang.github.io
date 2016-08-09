@@ -1854,6 +1854,9 @@ footer {
 .social-font a[title="github"]::before {
   content: "\f09b";
 }
+.social-font a[title="zhihu"]::before {
+  content: "\f142";
+}
 .social-font a[title="facebook"]::before {
   content: "\f09a";
 }
